@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated />
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="CargoProjects">
+    <cargoProject FILE="$PROJECT_DIR$/Cargo.toml" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="43416670-0137-446d-b72d-58112f45128a" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="9dba09u4" />
+  </component>
+  <component name="ProjectId" id="1m744D8nczRLdCEYH3FUdPXcM2F" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="cf.first.check.clang-format" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
+    <property name="settings.editor.selected.configurable" value="http.proxy" />
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="cargo test" />
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="test" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
+      <option name="command" value="test" />
+      <option name="workingDirectory" value="file://$PROJECT_DIR$" />
+      <option name="channel" value="DEFAULT" />
+      <option name="allFeatures" value="false" />
+      <option name="emulateTerminal" value="false" />
+      <option name="backtrace" value="SHORT" />
+      <envs />
+      <option name="isRedirectInput" value="false" />
+      <option name="redirectInputPath" value="" />
+      <method v="2">
+        <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Cargo.test" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="RustProjectSettings">
+    <option name="toolchainHomeDirectory" value="$USER_HOME$/.cargo/bin" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="43416670-0137-446d-b72d-58112f45128a" name="Default Changelist" comment="" />
+      <created>1608831102636</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1608831102636</updated>
+      <workItem from="1608831104043" duration="2068000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="744" y="351" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1608831152777">
+      <screen x="0" y="25" width="2560" height="1335" />
+    </state>
+    <state x="744" y="351" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.25.2560.1335/2560.-215.1080.1895@0.25.2560.1335" timestamp="1608831152777" />
+    <state width="2518" height="380" key="GridCell.Tab.0.bottom" timestamp="1608831219521">
+      <screen x="0" y="25" width="2560" height="1335" />
+    </state>
+    <state width="2518" height="380" key="GridCell.Tab.0.bottom/0.25.2560.1335/2560.-215.1080.1895@0.25.2560.1335" timestamp="1608831219521" />
+    <state width="2518" height="380" key="GridCell.Tab.0.center" timestamp="1608831219520">
+      <screen x="0" y="25" width="2560" height="1335" />
+    </state>
+    <state width="2518" height="380" key="GridCell.Tab.0.center/0.25.2560.1335/2560.-215.1080.1895@0.25.2560.1335" timestamp="1608831219520" />
+    <state width="2518" height="380" key="GridCell.Tab.0.left" timestamp="1608831219520">
+      <screen x="0" y="25" width="2560" height="1335" />
+    </state>
+    <state width="2518" height="380" key="GridCell.Tab.0.left/0.25.2560.1335/2560.-215.1080.1895@0.25.2560.1335" timestamp="1608831219520" />
+    <state width="2518" height="380" key="GridCell.Tab.0.right" timestamp="1608831219521">
+      <screen x="0" y="25" width="2560" height="1335" />
+    </state>
+    <state width="2518" height="380" key="GridCell.Tab.0.right/0.25.2560.1335/2560.-215.1080.1895@0.25.2560.1335" timestamp="1608831219521" />
+    <state x="945" y="325" width="670" height="675" key="run.anything.popup" timestamp="1608831196757">
+      <screen x="0" y="25" width="2560" height="1335" />
+    </state>
+    <state x="945" y="325" width="670" height="675" key="run.anything.popup/0.25.2560.1335/2560.-215.1080.1895@0.25.2560.1335" timestamp="1608831196757" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/lib.rs</url>
+          <line>12</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
