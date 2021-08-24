@@ -1,6 +1,7 @@
 use high_scores::HighScores;
 
 #[test]
+// #[ignore]
 fn test_list_of_scores() {
     let expected = [30, 50, 20, 70];
     let high_scores = HighScores::new(&expected);
@@ -8,35 +9,35 @@ fn test_list_of_scores() {
 }
 
 #[test]
-#[ignore]
+// #[ignore]
 fn test_latest_score() {
     let high_scores = HighScores::new(&[100, 0, 90, 30]);
     assert_eq!(high_scores.latest(), Some(30));
 }
 
 #[test]
-#[ignore]
+// #[ignore]
 fn test_latest_score_empty() {
     let high_scores = HighScores::new(&[]);
     assert_eq!(high_scores.latest(), None);
 }
 
 #[test]
-#[ignore]
+// #[ignore]
 fn test_personal_best() {
     let high_scores = HighScores::new(&[40, 100, 70]);
     assert_eq!(high_scores.personal_best(), Some(100));
 }
 
 #[test]
-#[ignore]
+// #[ignore]
 fn test_personal_best_empty() {
     let high_scores = HighScores::new(&[]);
     assert_eq!(high_scores.personal_best(), None);
 }
 
 #[test]
-#[ignore]
+// #[ignore]
 fn test_personal_top_three() {
     let high_scores = HighScores::new(&[10, 30, 90, 30, 100, 20, 10, 0, 30, 40, 40, 70, 70]);
     assert_eq!(high_scores.personal_top_three(), vec![100, 90, 70]);
