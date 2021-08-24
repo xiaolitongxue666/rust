@@ -1,16 +1,18 @@
 #[derive(Debug)]
-pub struct HighScores;
+pub struct HighScores<'a> {
+    hig_scores : &'a [u32],
+}
 
-impl HighScores {
-    pub fn new(scores: &[u32]) -> Self {
-        unimplemented!(
-            "Construct a HighScores struct, given the scores: {:?}",
-            scores
-        )
+impl<'a> HighScores<'a> {
+    pub fn new(scores: &'a [u32]) -> Self {
+        HighScores {
+            hig_scores : scores
+        }
     }
 
     pub fn scores(&self) -> &[u32] {
-        unimplemented!("Return all the scores as a slice")
+        println!("Input scores data is : {:?} ." , self.hig_scores);
+        self.hig_scores
     }
 
     pub fn latest(&self) -> Option<u32> {
