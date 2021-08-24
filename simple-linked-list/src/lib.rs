@@ -1,21 +1,14 @@
 use std::iter::FromIterator;
 
-pub struct Node<T> {
-    data: T,
-    next : Option<Box<Node<T>>>,
-}
-
 pub struct SimpleLinkedList<T> {
-    head : Option<Box<Node<T>>>,
-    length : usize,
+    // Delete this field
+    // dummy is needed to avoid unused parameter error during compilation
+    dummy: ::std::marker::PhantomData<T>,
 }
 
 impl<T> SimpleLinkedList<T> {
     pub fn new() -> Self {
-        return SimpleLinkedList{
-            head: None,
-            length: 0,
-         }
+        unimplemented!()
     }
 
     // You may be wondering why it's necessary to have is_empty()
@@ -24,15 +17,11 @@ impl<T> SimpleLinkedList<T> {
     // whereas is_empty() is almost always cheap.
     // (Also ask yourself whether len() is expensive for SimpleLinkedList)
     pub fn is_empty(&self) -> bool {
-        if self.length == 0 {
-            return true;
-        } else {
-            return false;
-        }
+        unimplemented!()
     }
 
     pub fn len(&self) -> usize {
-        self.length
+        unimplemented!()
     }
 
     pub fn push(&mut self, _element: T) {
