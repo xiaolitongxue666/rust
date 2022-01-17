@@ -40,14 +40,5 @@ pub fn value_to_color_string(value: usize) -> String {
 pub fn colors() -> Vec<ResistorColor> {
     // unimplemented!("return a list of all the colors ordered by resistance")
 
-    let mut colors_vec = Vec::new();
-
-    let color_iter = ResistorColor::into_enum_iter();
-
-    for val in color_iter  {
-        println!("Got: {:?}", val);
-        colors_vec.push(val);
-    }
-
-    colors_vec
+    ResistorColor::into_enum_iter().collect()
 }
