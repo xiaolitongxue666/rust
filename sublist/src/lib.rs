@@ -54,7 +54,7 @@ pub fn sublist<T: PartialEq>(_first_list: &[T], _second_list: &[T]) -> Compariso
                 Comparison::Sublist
             } else {
                 // first_list_len < second_list_len
-                if _first_list.iter().all(|x| _second_list.contains(x)) {
+                // if _first_list.iter().all(|x| _second_list.contains(x)) {
                     loop {
                         if (fist_flag == false) && (index > (second_list_len - first_list_len)) {
                             result = Comparison::Unequal;
@@ -73,9 +73,9 @@ pub fn sublist<T: PartialEq>(_first_list: &[T], _second_list: &[T]) -> Compariso
                         }
                     }
                     result
-                } else {
-                    Comparison::Unequal
-                }
+                // } else {
+                //     Comparison::Unequal
+                // }
             }
         }
     };
