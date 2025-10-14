@@ -1,6 +1,7 @@
 # Exercism CLI 安装指南 
 
 https://exercism.org/cli-walkthrough
+https://exercism.org/docs/using/solving-exercises/working-locally
 
 ## 概述
 
@@ -172,7 +173,30 @@ exercism whoami
 
 ## 基本使用
 
-### 下载练习
+### 1. 配置 CLI
+
+首先需要配置你的 API Token：
+
+```bash
+# 配置 API Token（从 https://exercism.org/settings 获取）
+exercism configure --token=YOUR_API_TOKEN
+
+# 配置工作目录（可选）
+exercism configure --workspace=/path/to/your/exercism/workspace
+
+# 查看当前配置
+exercism configure --show
+
+# 查看工作空间路径
+exercism workspace
+```
+
+**注意**：在 Windows Git Bash 中，如果 PATH 未正确设置，需要使用完整路径：
+```bash
+C:/tools/exercism/exercism.exe configure --token=YOUR_API_TOKEN
+```
+
+### 2. 下载练习
 
 ```bash
 # 下载特定练习
@@ -180,19 +204,107 @@ exercism download --exercise=hello-world --track=rust
 
 # 下载所有练习
 exercism download --track=rust
+
+# 强制覆盖现有练习目录
+exercism download --exercise=hello-world --track=rust --force
+
+# 从练习页面获取具体命令（推荐）
+# 每个练习页面都会显示正确的下载命令
 ```
 
-### 提交解决方案
+**Windows Git Bash 示例**：
+```bash
+C:/tools/exercism/exercism.exe download --exercise=hello-world --track=rust
+```
+
+### 3. 解决练习
+
+下载练习后，你会得到以下文件：
+- `README.md`: 练习说明
+- `HELP.md`: 如何运行测试和获取帮助
+- `HINTS.md`: 提示信息（可选）
+- 测试文件: 验证解决方案的正确性
+- 存根文件: 提供起始点
+
+**运行测试：**
+```bash
+# 进入练习目录（重要：必须在练习目录中运行）
+cd hello-world
+
+# 验证目录正确性（检查是否有 .exercism 文件夹）
+ls -la .exercism
+
+# 使用 exercism 运行测试
+exercism test
+
+# 或者使用 cargo test（Rust 项目）
+cargo test
+
+# 或者使用项目特定的测试脚本
+./bin/test-exercise .
+```
+
+**Windows Git Bash 示例**：
+```bash
+# 验证目录正确性
+ls -la .exercism
+
+# 运行测试
+C:/tools/exercism/exercism.exe test
+```
+
+### 4. 提交解决方案
 
 ```bash
-# 提交解决方案
-exercism submit path/to/solution.rs
+# 确保在练习目录中（包含 .exercism 文件夹）
+# 提交单个文件
+exercism submit src/lib.rs
 
 # 提交多个文件
 exercism submit src/lib.rs tests/lib.rs
+
+# 提交所有相关文件（推荐）
+exercism submit .
 ```
 
-### 获取帮助
+**Windows Git Bash 示例**：
+```bash
+# 确保在练习目录中
+C:/tools/exercism/exercism.exe submit src/lib.rs
+# 或者提交所有文件
+C:/tools/exercism/exercism.exe submit .
+```
+
+### 5. 查看练习状态
+
+```bash
+# 查看当前练习状态
+exercism status
+
+# 查看特定练习状态
+exercism status --exercise=hello-world --track=rust
+```
+
+### 6. 在网站上打开练习
+
+```bash
+# 在浏览器中打开练习页面
+exercism open --exercise=hello-world --track=rust
+```
+
+### 7. 请求导师指导
+
+```bash
+# 请求导师指导（即使解决方案不完整）
+exercism mentor --exercise=hello-world --track=rust
+```
+
+**Windows Git Bash 示例**：
+```bash
+C:/tools/exercism/exercism.exe open --exercise=hello-world --track=rust
+```
+
+### 8. 获取帮助
 
 ```bash
 # 查看所有命令
@@ -201,18 +313,247 @@ exercism help
 # 查看特定命令帮助
 exercism help download
 exercism help submit
+exercism help configure
+
+# 故障排除
+exercism troubleshoot
+
+# 升级 CLI
+exercism upgrade
 ```
 
-## 常用命令
+**Windows Git Bash 示例**：
+```bash
+C:/tools/exercism/exercism.exe help
+C:/tools/exercism/exercism.exe troubleshoot
+```
 
-| 命令 | 描述 |
-|------|------|
-| `exercism download` | 下载练习 |
-| `exercism submit` | 提交解决方案 |
-| `exercism status` | 查看练习状态 |
-| `exercism test` | 运行测试 |
-| `exercism mentor` | 请求导师指导 |
-| `exercism whoami` | 查看当前用户信息 |
+## 常用命令参考
+
+| 命令 | 描述 | 示例 |
+|------|------|------|
+| `exercism configure` | 配置 CLI | `exercism configure --token=YOUR_TOKEN` |
+| `exercism download` | 下载练习 | `exercism download --exercise=hello-world --track=rust` |
+| `exercism submit` | 提交解决方案 | `exercism submit src/lib.rs` |
+| `exercism test` | 运行测试 | `exercism test` |
+| `exercism status` | 查看练习状态 | `exercism status` |
+| `exercism open` | 在网站打开练习 | `exercism open --exercise=hello-world --track=rust` |
+| `exercism mentor` | 请求导师指导 | `exercism mentor --exercise=hello-world` |
+| `exercism workspace` | 查看工作空间路径 | `exercism workspace` |
+| `exercism help` | 获取帮助 | `exercism help` |
+| `exercism version` | 查看版本 | `exercism version` |
+| `exercism troubleshoot` | 故障排除 | `exercism troubleshoot` |
+| `exercism upgrade` | 升级 CLI | `exercism upgrade` |
+
+## 完整工作流程示例
+
+### 1. 首次设置
+
+```bash
+# 1. 配置 API Token
+exercism configure --token=your-api-token-here
+
+# 2. 查看配置
+exercism configure --show
+
+# 3. 设置工作目录（可选）
+exercism configure --workspace=/path/to/exercism
+
+# 4. 查看工作空间路径
+exercism workspace
+```
+
+**Windows Git Bash 示例**：
+
+打开 https://exercism.org/settings/api_cli 拷贝token
+
+```bash
+C:/tools/exercism/exercism.exe configure --token=your-api-token-here
+C:/tools/exercism/exercism.exe configure --show
+```
+
+### 2. 下载并解决练习
+
+```bash
+# 1. 下载练习（可以在任何目录运行）
+exercism download --exercise=hello-world --track=rust
+
+# 2. 进入练习目录（重要：必须进入具体练习目录）
+cd hello-world
+
+# 3. 验证目录正确性（检查是否有 .exercism 文件夹）
+ls -la .exercism
+
+# 4. 查看练习说明
+cat README.md
+
+# 5. 运行测试（查看失败情况）
+exercism test
+# 或者
+cargo test
+
+# 6. 编辑 src/lib.rs 实现解决方案
+# ... 编写代码 ...
+
+# 7. 再次运行测试
+exercism test
+# 或者
+cargo test
+
+# 8. 提交解决方案（必须在练习目录中运行）
+exercism submit src/lib.rs
+# 或者提交所有文件
+exercism submit .
+```
+
+**Windows Git Bash 示例**：
+```bash
+# 1. 下载练习
+C:/tools/exercism/exercism.exe download --exercise=hello-world --track=rust
+
+# 2. 进入练习目录
+cd hello-world
+
+# 3. 验证目录正确性
+ls -la .exercism
+
+# 4. 运行测试
+C:/tools/exercism/exercism.exe test
+# 或者
+cargo test
+
+# 5. 提交解决方案
+C:/tools/exercism/exercism.exe submit src/lib.rs
+# 或者
+C:/tools/exercism/exercism.exe submit .
+```
+
+### 3. 获取帮助和指导
+
+```bash
+# 查看练习帮助
+cat HELP.md
+
+# 查看提示（如果有）
+cat HINTS.md
+
+# 在网站上打开练习
+exercism open --exercise=hello-world --track=rust
+
+# 请求导师指导
+exercism mentor --exercise=hello-world --track=rust
+
+# 故障排除
+exercism troubleshoot
+```
+
+**Windows Git Bash 示例**：
+```bash
+C:/tools/exercism/exercism.exe open --exercise=hello-world --track=rust
+C:/tools/exercism/exercism.exe troubleshoot
+```
+
+## 重要：命令运行目录说明
+
+### 需要在具体题目子目录下运行的命令
+
+以下 exercism 命令**必须在单个练习目录中运行**（包含 `.exercism` 文件夹的目录）：
+
+| 命令 | 说明 | 示例 |
+|------|------|------|
+| `exercism test` | 运行练习测试 | 必须在练习目录中 |
+| `exercism submit` | 提交解决方案 | 必须在练习目录中 |
+| `exercism status` | 查看练习状态 | 必须在练习目录中 |
+
+### 可以在任何目录运行的命令
+
+以下命令可以在任何目录运行：
+
+| 命令 | 说明 | 示例 |
+|------|------|------|
+| `exercism download` | 下载练习 | 可以在任何目录 |
+| `exercism configure` | 配置 CLI | 可以在任何目录 |
+| `exercism help` | 获取帮助 | 可以在任何目录 |
+| `exercism version` | 查看版本 | 可以在任何目录 |
+| `exercism troubleshoot` | 故障排除 | 可以在任何目录 |
+| `exercism upgrade` | 升级 CLI | 可以在任何目录 |
+| `exercism workspace` | 查看工作空间 | 可以在任何目录 |
+
+### 常见错误和解决方案
+
+#### 错误示例
+```bash
+# ❌ 错误：在项目根目录运行
+cd /path/to/exercism/rust
+exercism test
+# Error: open .exercism\metadata.json: The system cannot find the path specified.
+```
+
+#### 正确做法
+```bash
+# ✅ 正确：进入具体练习目录
+cd /path/to/exercism/rust/hello-world
+exercism test
+# 或者
+cargo test
+```
+
+### 目录结构说明
+
+```
+exercism/rust/                    # 项目根目录（包含所有练习）
+├── hello-world/                  # 单个练习目录
+│   ├── .exercism/               # exercism 元数据（重要！）
+│   ├── src/lib.rs              # 源代码
+│   ├── tests/                  # 测试文件
+│   └── README.md               # 练习说明
+├── anagram/                     # 另一个练习目录
+│   ├── .exercism/
+│   └── ...
+└── ...
+```
+
+**关键点**：只有包含 `.exercism` 文件夹的目录才是有效的练习目录，才能运行 `test`、`submit`、`status` 等命令。
+
+## Windows Git Bash 特殊说明
+
+### PATH 环境变量问题
+
+在 Windows Git Bash 中，如果 `exercism` 命令无法识别，可以使用以下解决方案：
+
+#### 方法 1：使用完整路径（推荐）
+```bash
+# 所有命令都使用完整路径
+C:/tools/exercism/exercism.exe version
+C:/tools/exercism/exercism.exe configure --token=YOUR_TOKEN
+C:/tools/exercism/exercism.exe download --exercise=hello-world --track=rust
+```
+
+#### 方法 2：创建别名
+```bash
+# 在 ~/.bashrc 中添加别名
+echo 'alias exercism="C:/tools/exercism/exercism.exe"' >> ~/.bashrc
+source ~/.bashrc
+
+# 之后可以直接使用
+exercism version
+```
+
+#### 方法 3：添加到 PATH
+```bash
+# 临时添加到 PATH
+export PATH="$PATH:/c/tools/exercism"
+
+# 永久添加到 PATH（在 ~/.bashrc 中添加）
+echo 'export PATH="$PATH:/c/tools/exercism"' >> ~/.bashrc
+source ~/.bashrc
+```
+
+### 路径格式说明
+
+在 Git Bash 中，Windows 路径需要转换：
+- Windows: `C:\tools\exercism\exercism.exe`
+- Git Bash: `C:/tools/exercism/exercism.exe` 或 `/c/tools/exercism/exercism.exe`
 
 ## 故障排除
 
@@ -234,11 +575,54 @@ exercism help submit
    - 重新生成 API Token
    - 检查 Token 是否正确配置
 
+5. **测试失败但本地通过**
+   - 确保使用正确的文件路径
+   - 检查是否有未提交的更改
+   - 验证测试环境一致性
+
+6. **"The system cannot find the path specified" 错误**
+   - 确保在正确的练习目录中运行命令
+   - 检查目录中是否有 `.exercism` 文件夹
+   - 不要在项目根目录运行 `exercism test` 或 `exercism submit`
+
+7. **exercism submit 无法找到文件**
+   - 确保在练习目录中运行 `exercism submit`
+   - 检查文件路径是否正确
+   - 可以使用 `exercism submit .` 提交所有相关文件
+
+### 诊断命令
+
+```bash
+# 检查版本
+exercism version
+
+# 检查配置
+exercism configure --show
+
+# 查看工作空间
+exercism workspace
+
+# 运行故障排除
+exercism troubleshoot
+
+# 检查命令位置
+which exercism  # Linux/macOS
+where exercism  # Windows
+```
+
+**Windows Git Bash 示例**：
+```bash
+C:/tools/exercism/exercism.exe version
+C:/tools/exercism/exercism.exe configure --show
+C:/tools/exercism/exercism.exe troubleshoot
+```
+
 ### 获取帮助
 
-- 查看 [Exercism 文档](https://exercism.org/docs)
+- 查看 [Exercism 官方文档](https://exercism.org/docs/using/solving-exercises/working-locally)
 - 访问 [GitHub 仓库](https://github.com/exercism/cli)
 - 在 [Exercism 论坛](https://forum.exercism.org) 寻求帮助
+- 使用 `exercism help` 查看所有可用命令
 
 ## 更新 CLI
 
