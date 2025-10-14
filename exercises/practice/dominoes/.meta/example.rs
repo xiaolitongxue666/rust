@@ -1,5 +1,3 @@
-use std::iter;
-
 pub type Domino = (u8, u8);
 
 /// A table keeping track of available dominoes.
@@ -14,7 +12,7 @@ struct AvailabilityTable {
 impl AvailabilityTable {
     fn new() -> AvailabilityTable {
         AvailabilityTable {
-            m: iter::repeat(0).take(6 * 6).collect(),
+            m: std::iter::repeat_n(0, 6 * 6).collect(),
         }
     }
 
@@ -52,11 +50,16 @@ impl AvailabilityTable {
             }
         } else {
             // For this toy code hard explicit fail is best
-            panic!("remove for 0 stones: ({:?}, {:?})", x, y)
+            panic!("remove for 0 stones: ({x:?}, {y:?})")
         }
     }
 
     fn pop_first(&mut self, x: u8) -> Option<u8> {
+        if self.get(x, x) > 0 {
+            self.remove(x, x);
+            return Some(x);
+        }
+
         for y in 1..7 {
             if self.get(x, y) > 0 {
                 self.remove(x, y);

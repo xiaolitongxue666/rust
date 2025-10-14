@@ -1,5 +1,4 @@
 {
-  "blurb": "Given a number determine whether or not it is valid per the Luhn formula.",
   "authors": [
     "IanWhitney"
   ],
@@ -26,7 +25,8 @@
   ],
   "files": {
     "solution": [
-      "src/lib.rs"
+      "src/lib.rs",
+      "Cargo.toml"
     ],
     "test": [
       "tests/luhn.rs"
@@ -35,6 +35,7 @@
       ".meta/example.rs"
     ]
   },
+  "blurb": "Given a number determine whether or not it is valid per the Luhn formula.",
   "source": "The Luhn Algorithm on Wikipedia",
-  "source_url": "http://en.wikipedia.org/wiki/Luhn_algorithm"
+  "source_url": "https://en.wikipedia.org/wiki/Luhn_algorithm"
 }

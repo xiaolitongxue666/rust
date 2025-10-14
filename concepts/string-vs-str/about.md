@@ -30,7 +30,7 @@ This derives from the following properties:
 - Rust's standard library authors therefore chose not to implement the `Index` trait for strings: while it takes a constant time to index into a byte array, it might take quite a long time to index into a string. This violates the principle of least surprise.
 
 ```rust
-let example = "I'm not entirely ascii! ❤";
+let example = "I'm not entirely ASCII! ❤";
 
 let n_chars = example.chars().count();
 let final_byte = example.as_bytes()[example.len()-1];
@@ -39,7 +39,7 @@ println!("n_chars = {}", n_chars);             // 25
 println!("example.len() = {}", example.len()); // 27
 
 println!("final char: {}", example.chars().nth(n_chars-1).unwrap()); // ❤
-println!("final byte: {}", final_byte);                              // 164
+println!("final byte: {final_byte}");                                // 164
 println!("char of final byte: {}", final_byte as char);              // ¤
 ```
 

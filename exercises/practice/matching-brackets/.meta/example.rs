@@ -9,7 +9,7 @@ struct Brackets {
     pairs: MatchingBrackets,
 }
 
-impl<'a> From<&'a str> for Brackets {
+impl From<&str> for Brackets {
     fn from(i: &str) -> Self {
         Brackets::new(i, None)
     }
@@ -23,7 +23,7 @@ impl Brackets {
         };
 
         Brackets {
-            raw_brackets: s.chars().filter(|c| p.contains(&c)).collect::<Vec<char>>(),
+            raw_brackets: s.chars().filter(|c| p.contains(c)).collect::<Vec<char>>(),
             pairs: p,
         }
     }

@@ -1,5 +1,4 @@
 {
-  "blurb": "Tally the results of a small football competition.",
   "authors": [
     "EduardoBautista"
   ],
@@ -28,7 +27,8 @@
   ],
   "files": {
     "solution": [
-      "src/lib.rs"
+      "src/lib.rs",
+      "Cargo.toml"
     ],
     "test": [
       "tests/tournament.rs"
@@ -36,5 +36,6 @@
     "example": [
       ".meta/example.rs"
     ]
-  }
+  },
+  "blurb": "Tally the results of a small football competition."
 }

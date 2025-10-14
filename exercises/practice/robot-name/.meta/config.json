@@ -1,5 +1,4 @@
 {
-  "blurb": "Manage robot factory settings.",
   "authors": [
     "EduardoBautista"
   ],
@@ -31,14 +30,16 @@
   ],
   "files": {
     "solution": [
-      "src/lib.rs"
+      "src/lib.rs",
+      "Cargo.toml"
     ],
     "test": [
-      "tests/robot-name.rs"
+      "tests/robot_name.rs"
     ],
     "example": [
       ".meta/example.rs"
     ]
   },
+  "blurb": "Manage robot factory settings.",
   "source": "A debugging session with Paul Blackwell at gSchool."
 }

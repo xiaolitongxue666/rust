@@ -1,0 +1,3 @@
+[workspace]
+members = ["generate", "ci-tests", "utils", "models"]
+resolver = "2"

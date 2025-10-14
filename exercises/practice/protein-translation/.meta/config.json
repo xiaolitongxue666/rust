@@ -1,5 +1,4 @@
 {
-  "blurb": "Translate RNA sequences into proteins.",
   "authors": [
     "petertseng"
   ],
@@ -23,14 +22,16 @@
   ],
   "files": {
     "solution": [
-      "src/lib.rs"
+      "src/lib.rs",
+      "Cargo.toml"
     ],
     "test": [
-      "tests/protein-translation.rs"
+      "tests/protein_translation.rs"
     ],
     "example": [
       ".meta/example.rs"
     ]
   },
+  "blurb": "Translate RNA sequences into proteins.",
   "source": "Tyler Long"
 }

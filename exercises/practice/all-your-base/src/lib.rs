@@ -1,4 +1,4 @@
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Eq)]
 pub enum Error {
     InvalidInputBase,
     InvalidOutputBase,
@@ -12,8 +12,7 @@ pub enum Error {
 /// A digit is any unsigned integer (e.g. u8, u16, u32, u64, or usize).
 /// Bases are specified as unsigned integers.
 ///
-/// Return an `Err(.)` if the conversion is impossible.
-/// The tests do not test for specific values inside the `Err(.)`.
+/// Return the corresponding Error enum if the conversion is impossible.
 ///
 ///
 /// You are allowed to change the function signature as long as all test still pass.
@@ -37,10 +36,5 @@ pub enum Error {
 ///    However, your function must be able to process input with leading 0 digits.
 ///
 pub fn convert(number: &[u32], from_base: u32, to_base: u32) -> Result<Vec<u32>, Error> {
-    unimplemented!(
-        "Convert {:?} from base {} to base {}",
-        number,
-        from_base,
-        to_base
-    )
+    todo!("Convert {number:?} from base {from_base} to base {to_base}")
 }

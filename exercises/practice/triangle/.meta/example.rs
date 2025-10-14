@@ -25,11 +25,7 @@ where
     pub fn build(sides: [T; 3]) -> Option<Triangle<T>> {
         let t = Triangle { sides };
 
-        if t.valid_sides() {
-            Some(t)
-        } else {
-            None
-        }
+        if t.valid_sides() { Some(t) } else { None }
     }
 
     pub fn is_equilateral(&self) -> bool {
@@ -37,7 +33,7 @@ where
     }
 
     pub fn is_isosceles(&self) -> bool {
-        self.count_distinct_pairs() == 2
+        self.count_distinct_pairs() <= 2
     }
 
     pub fn is_scalene(&self) -> bool {

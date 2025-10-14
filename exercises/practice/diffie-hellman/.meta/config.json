@@ -1,5 +1,4 @@
 {
-  "blurb": "Diffie-Hellman key exchange.",
   "authors": [
     "hekrause"
   ],
@@ -11,6 +10,7 @@
     "ErikSchierboom",
     "LeBlue",
     "lutostag",
+    "PaulT89",
     "petertseng",
     "rofrol",
     "stringparser",
@@ -19,15 +19,17 @@
   ],
   "files": {
     "solution": [
-      "src/lib.rs"
+      "src/lib.rs",
+      "Cargo.toml"
     ],
     "test": [
-      "tests/diffie-hellman.rs"
+      "tests/diffie_hellman.rs"
     ],
     "example": [
       ".meta/example.rs"
     ]
   },
+  "blurb": "Diffie-Hellman key exchange.",
   "source": "Wikipedia, 1024 bit key from www.cryptopp.com/wiki.",
-  "source_url": "http://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange"
+  "source_url": "https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange"
 }

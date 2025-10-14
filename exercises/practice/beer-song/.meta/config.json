@@ -1,5 +1,4 @@
 {
-  "blurb": "Produce the lyrics to that beloved classic, that field-trip favorite: 99 Bottles of Beer on the Wall.",
   "authors": [
     "EduardoBautista"
   ],
@@ -29,15 +28,17 @@
   ],
   "files": {
     "solution": [
-      "src/lib.rs"
+      "src/lib.rs",
+      "Cargo.toml"
     ],
     "test": [
-      "tests/beer-song.rs"
+      "tests/beer_song.rs"
     ],
     "example": [
       ".meta/example.rs"
     ]
   },
+  "blurb": "Produce the lyrics to that beloved classic, that field-trip favorite: 99 Bottles of Beer on the Wall.",
   "source": "Learn to Program by Chris Pine",
-  "source_url": "http://pine.fm/LearnToProgram/?Chapter=06"
+  "source_url": "https://pine.fm/LearnToProgram/?Chapter=06"
 }

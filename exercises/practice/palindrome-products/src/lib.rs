@@ -1,26 +1,22 @@
-#[derive(Debug, PartialEq, Eq)]
+use std::collections::HashSet;
+
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Palindrome {
-    // implement your palindrome type here
+    // TODO
 }
 
 impl Palindrome {
-    pub fn new(a: u64, b: u64) -> Palindrome {
-        unimplemented!("create a palindrome with factors ({}, {})", a, b)
-    }
-
     pub fn value(&self) -> u64 {
-        unimplemented!("return the value of this palindrome")
+        todo!("return the value of the palindrome")
     }
 
-    pub fn insert(&mut self, a: u64, b: u64) {
-        unimplemented!("insert new factors ({}, {}) into this palindrome", a, b)
+    pub fn into_factors(self) -> HashSet<(u64, u64)> {
+        todo!("return the set of factors of the palindrome")
     }
 }
 
 pub fn palindrome_products(min: u64, max: u64) -> Option<(Palindrome, Palindrome)> {
-    unimplemented!(
-        "Find the min and max palindromic numbers which are products of numbers in the inclusive range ({}..{})",
-        min,
-        max
-    )
+    todo!(
+        "returns the minimum palindrome and maximum palindrome of the products of two factors in the range {min} to {max}"
+    );
 }

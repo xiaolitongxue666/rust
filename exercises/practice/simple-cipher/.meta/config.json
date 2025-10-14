@@ -1,5 +1,4 @@
 {
-  "blurb": "Implement a simple shift cipher like Caesar and a more secure substitution cipher",
   "authors": [
     "miken500"
   ],
@@ -20,15 +19,17 @@
   ],
   "files": {
     "solution": [
-      "src/lib.rs"
+      "src/lib.rs",
+      "Cargo.toml"
     ],
     "test": [
-      "tests/simple-cipher.rs"
+      "tests/simple_cipher.rs"
     ],
     "example": [
       ".meta/example.rs"
     ]
   },
+  "blurb": "Implement the Vigenère cipher, a simple substitution cipher.",
   "source": "Substitution Cipher at Wikipedia",
-  "source_url": "http://en.wikipedia.org/wiki/Substitution_cipher"
+  "source_url": "https://en.wikipedia.org/wiki/Substitution_cipher"
 }

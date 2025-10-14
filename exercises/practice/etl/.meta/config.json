@@ -1,5 +1,4 @@
 {
-  "blurb": "We are going to do the `Transform` step of an Extract-Transform-Load.",
   "authors": [
     "EduardoBautista"
   ],
@@ -27,7 +26,8 @@
   ],
   "files": {
     "solution": [
-      "src/lib.rs"
+      "src/lib.rs",
+      "Cargo.toml"
     ],
     "test": [
       "tests/etl.rs"
@@ -36,6 +36,7 @@
       ".meta/example.rs"
     ]
   },
-  "source": "The Jumpstart Lab team",
-  "source_url": "http://jumpstartlab.com"
+  "blurb": "Change the data format for scoring a game to more easily add other languages.",
+  "source": "Based on an exercise by the JumpstartLab team for students at The Turing School of Software and Design.",
+  "source_url": "https://turing.edu"
 }

@@ -1,6 +1,6 @@
 # Integers
 
-Integers are whole numbers. They have no factional or decimal part. They are represented in the machine as a pattern of binary bits.
+Integers are whole numbers. They have no fractional or decimal part. They are represented in the machine as a pattern of binary bits.
 
 Integers may or may not be signed. Signedness means reserving one of the bits of the number to indicate
 whether or not that number is negative.
@@ -9,7 +9,7 @@ Integers all have a **bit width**, which is just the number of bits making up th
 the maximum value which can be represented by that integer type.
 
 For example, one of the most common integer types is a `u8`: an unsigned, 8-bit integer. You may
-recognize this type as a single byte. This has a minimum value of 0 and a maximum value of 256.
+recognize this type as a single byte. This has a minimum value of 0 and a maximum value of 255.
 
 Rust has 12 integer primitive types, broken out by bit width and signedness:
 

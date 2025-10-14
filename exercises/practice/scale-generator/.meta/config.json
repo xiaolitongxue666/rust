@@ -1,5 +1,4 @@
 {
-  "blurb": "Generate musical scales, given a starting note and a set of intervals. ",
   "authors": [
     "coriolinus"
   ],
@@ -15,13 +14,15 @@
   ],
   "files": {
     "solution": [
-      "src/lib.rs"
+      "src/lib.rs",
+      "Cargo.toml"
     ],
     "test": [
-      "tests/scale-generator.rs"
+      "tests/scale_generator.rs"
     ],
     "example": [
       ".meta/example.rs"
     ]
-  }
+  },
+  "blurb": "Generate musical scales, given a starting note and a set of intervals."
 }

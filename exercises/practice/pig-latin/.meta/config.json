@@ -1,5 +1,4 @@
 {
-  "blurb": "Implement a program that translates from English to Pig Latin",
   "authors": [
     "sacherjj"
   ],
@@ -21,15 +20,17 @@
   ],
   "files": {
     "solution": [
-      "src/lib.rs"
+      "src/lib.rs",
+      "Cargo.toml"
     ],
     "test": [
-      "tests/pig-latin.rs"
+      "tests/pig_latin.rs"
     ],
     "example": [
       ".meta/example.rs"
     ]
   },
+  "blurb": "Implement a program that translates from English to Pig Latin.",
   "source": "The Pig Latin exercise at Test First Teaching by Ultrasaurus",
   "source_url": "https://github.com/ultrasaurus/test-first-teaching/blob/master/learn_ruby/pig_latin/"
 }

@@ -1,5 +1,4 @@
 {
-  "blurb": "Count the frequency of letters in texts using parallel computation.",
   "authors": [
     "EduardoBautista"
   ],
@@ -29,13 +28,15 @@
   ],
   "files": {
     "solution": [
-      "src/lib.rs"
+      "src/lib.rs",
+      "Cargo.toml"
     ],
     "test": [
-      "tests/parallel-letter-frequency.rs"
+      "tests/parallel_letter_frequency.rs"
     ],
     "example": [
       ".meta/example.rs"
     ]
-  }
+  },
+  "blurb": "Count the frequency of letters in texts using parallel computation."
 }

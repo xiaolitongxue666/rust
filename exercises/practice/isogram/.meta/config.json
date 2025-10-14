@@ -1,5 +1,4 @@
 {
-  "blurb": "Determine if a word or phrase is an isogram.",
   "authors": [
     "hekrause"
   ],
@@ -17,7 +16,8 @@
   ],
   "files": {
     "solution": [
-      "src/lib.rs"
+      "src/lib.rs",
+      "Cargo.toml"
     ],
     "test": [
       "tests/isogram.rs"
@@ -26,6 +26,7 @@
       ".meta/example.rs"
     ]
   },
+  "blurb": "Determine if a word or phrase is an isogram.",
   "source": "Wikipedia",
   "source_url": "https://en.wikipedia.org/wiki/Isogram"
 }

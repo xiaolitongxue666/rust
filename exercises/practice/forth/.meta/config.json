@@ -1,5 +1,4 @@
 {
-  "blurb": "Implement an evaluator for a very simple subset of Forth",
   "authors": [
     "EduardoBautista"
   ],
@@ -30,14 +29,16 @@
   ],
   "files": {
     "solution": [
-      "src/lib.rs"
+      "src/lib.rs",
+      "Cargo.toml"
     ],
     "test": [
       "tests/forth.rs",
-      "tests/alloc-attack.rs"
+      "tests/alloc_attack.rs"
     ],
     "example": [
       ".meta/example.rs"
     ]
-  }
+  },
+  "blurb": "Implement an evaluator for a very simple subset of Forth."
 }

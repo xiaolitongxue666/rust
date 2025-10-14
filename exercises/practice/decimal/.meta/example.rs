@@ -60,10 +60,10 @@ impl Decimal {
     /// Add precision to the less-precise value until precisions match
     ///
     /// Precision, in this case, is defined as the decimal index.
-    fn equalize_precision(mut one: &mut Decimal, mut two: &mut Decimal) {
+    fn equalize_precision(one: &mut Decimal, two: &mut Decimal) {
         fn expand(lower_precision: &mut Decimal, higher_precision: &Decimal) {
             let precision_difference =
-                (higher_precision.decimal_index - lower_precision.decimal_index) as usize;
+                higher_precision.decimal_index - lower_precision.decimal_index;
 
             lower_precision.digits =
                 &lower_precision.digits * pow(BigInt::from(10_usize), precision_difference);
@@ -71,8 +71,8 @@ impl Decimal {
         }
         match one.decimal_index.cmp(&two.decimal_index) {
             std::cmp::Ordering::Equal => {}
-            std::cmp::Ordering::Less => expand(&mut one, &two),
-            std::cmp::Ordering::Greater => expand(&mut two, &one),
+            std::cmp::Ordering::Less => expand(one, two),
+            std::cmp::Ordering::Greater => expand(two, one),
         }
         assert_eq!(one.decimal_index, two.decimal_index);
     }
@@ -102,7 +102,9 @@ macro_rules! auto_impl_decimal_ops {
             fn $func_name(mut self, mut rhs: Self) -> Self {
                 Decimal::equalize_precision(&mut self, &mut rhs);
                 Decimal::new(
+                    #[allow(clippy::redundant_closure_call)]
                     $digits_operation(self.digits, rhs.digits),
+                    #[allow(clippy::redundant_closure_call)]
                     $index_operation(self.decimal_index, rhs.decimal_index),
                 )
             }
@@ -125,6 +127,7 @@ macro_rules! auto_impl_decimal_cow {
         impl $trait for Decimal {
             fn $func_name(&self, other: &Self) -> $return_type {
                 if self.decimal_index == other.decimal_index {
+                    #[allow(clippy::redundant_closure_call)]
                     $digits_operation(&self.digits, &other.digits)
                 } else {
                     // if we're here, the decimal indexes are unmatched.
@@ -156,12 +159,12 @@ impl fmt::Display for Decimal {
         // left-padded with zeroes
         let digits = format!("{:0>width$}", self.digits, width = self.decimal_index);
         if self.decimal_index == digits.len() {
-            write!(f, "0.{}", digits)
+            write!(f, "0.{digits}")
         } else if self.decimal_index == 0 {
-            write!(f, "{}", digits)
+            write!(f, "{digits}")
         } else {
             let (before_index, after_index) = digits.split_at(digits.len() - self.decimal_index);
-            write!(f, "{}.{}", before_index, after_index)
+            write!(f, "{before_index}.{after_index}")
         }
     }
 }
@@ -171,7 +174,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_display_temp() {
+    fn display_temp() {
         for &test_str in &["0", "1", "20", "0.3", "0.04", "50.05", "66.0006", "0.007"] {
             println!(
                 "Decimal representation of \"{}\": {}",

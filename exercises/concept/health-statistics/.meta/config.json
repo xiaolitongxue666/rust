@@ -1,17 +1,18 @@
 {
-  "blurb": "Learn structs to store statistics for a health-monitoring system.",
   "authors": [
     "seanchen1991"
   ],
   "files": {
     "solution": [
-      "src/lib.rs"
+      "src/lib.rs",
+      "Cargo.toml"
     ],
     "test": [
-      "tests/health-statistics.rs"
+      "tests/health_statistics.rs"
     ],
     "exemplar": [
       ".meta/exemplar.rs"
     ]
-  }
+  },
+  "blurb": "Learn structs to store statistics for a health-monitoring system."
 }

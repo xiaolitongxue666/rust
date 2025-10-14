@@ -1,11 +1,11 @@
-use lazy_static::lazy_static;
-use rand::{thread_rng, Rng};
-use std::collections::HashSet;
-use std::sync::Mutex;
+use std::{
+    collections::HashSet,
+    sync::{LazyLock, Mutex},
+};
 
-lazy_static! {
-    static ref NAMES: Mutex<HashSet<String>> = Mutex::new(HashSet::new());
-}
+use rand::{Rng, thread_rng};
+
+static NAMES: LazyLock<Mutex<HashSet<String>>> = LazyLock::new(|| Mutex::new(HashSet::new()));
 
 pub struct Robot {
     name: String,
@@ -42,5 +42,11 @@ impl Robot {
 
     pub fn reset_name(&mut self) {
         self.name = generate_name();
+    }
+}
+
+impl Default for Robot {
+    fn default() -> Self {
+        Self::new()
     }
 }

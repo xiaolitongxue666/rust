@@ -1,5 +1,4 @@
 {
-  "blurb": "Create a custom set type.",
   "authors": [
     "EduardoBautista"
   ],
@@ -25,13 +24,15 @@
   ],
   "files": {
     "solution": [
-      "src/lib.rs"
+      "src/lib.rs",
+      "Cargo.toml"
     ],
     "test": [
-      "tests/custom-set.rs"
+      "tests/custom_set.rs"
     ],
     "example": [
       ".meta/example.rs"
     ]
-  }
+  },
+  "blurb": "Create a custom set type."
 }

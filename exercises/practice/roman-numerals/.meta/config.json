@@ -1,5 +1,4 @@
 {
-  "blurb": "Write a function to convert from normal numbers to Roman Numerals.",
   "authors": [
     "IanWhitney"
   ],
@@ -23,15 +22,17 @@
   ],
   "files": {
     "solution": [
-      "src/lib.rs"
+      "src/lib.rs",
+      "Cargo.toml"
     ],
     "test": [
-      "tests/roman-numerals.rs"
+      "tests/roman_numerals.rs"
     ],
     "example": [
       ".meta/example.rs"
     ]
   },
+  "blurb": "Convert modern Arabic numbers into Roman numerals.",
   "source": "The Roman Numeral Kata",
-  "source_url": "http://codingdojo.org/cgi-bin/index.pl?KataRomanNumerals"
+  "source_url": "https://codingdojo.org/kata/RomanNumerals/"
 }

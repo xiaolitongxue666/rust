@@ -1,5 +1,4 @@
 {
-  "blurb": "Implement variable length quantity encoding and decoding.",
   "authors": [
     "jonasbb"
   ],
@@ -23,15 +22,17 @@
   ],
   "files": {
     "solution": [
-      "src/lib.rs"
+      "src/lib.rs",
+      "Cargo.toml"
     ],
     "test": [
-      "tests/variable-length-quantity.rs"
+      "tests/variable_length_quantity.rs"
     ],
     "example": [
       ".meta/example.rs"
     ]
   },
+  "blurb": "Implement variable length quantity encoding and decoding.",
   "source": "A poor Splice developer having to implement MIDI encoding/decoding.",
   "source_url": "https://splice.com"
 }

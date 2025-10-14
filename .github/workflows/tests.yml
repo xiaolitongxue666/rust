@@ -4,7 +4,7 @@ name: CI
 on:
   push:
     branches:
-    - main
+      - main
   pull_request:
   workflow_dispatch:
   schedule:
@@ -12,50 +12,13 @@ on:
     - cron: "0 0 * * 0"
 
 jobs:
-  ensure-conventions:
-    name: Ensure conventions are followed
-    runs-on: ubuntu-latest
-
-    steps:
-      # Checks out a copy of your repository on the ubuntu-latest machine
-      - name: Checkout code
-        uses: actions/checkout@v2.3.4
-
-      - name: Ensure tool names are snake cased
-        run: ./bin/lint_tool_file_names.sh
-
-      - name: Ensure src/lib.rs files exist
-        run: ./_test/ensure_lib_src_rs_exist.sh
-
-      - name: Count ignores
-        run: ./_test/count_ignores.sh
-
-      - name: Check UUIDs
-        run: ./_test/check_uuids.sh
-
-      - name: Verify exercise difficulties
-        run: ./_test/verify_exercise_difficulties.sh
-
-      - name: Check exercises for authors
-        run: ./_test/check_exercises_for_authors.sh
-
-      - name: Ensure relevant files do not have trailing whitespace
-        run: ./bin/lint_trailing_spaces.sh
-
   configlet:
     name: configlet lint
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
-      # Checks out default branch locally so that it is available to the scripts.
-      - name: Checkout main
-        uses: actions/checkout@v2.3.4
-        with:
-          ref: main
-
-      # Checks out a copy of your repository on the ubuntu-latest machine
       - name: Checkout code
-        uses: actions/checkout@v2.3.4
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
 
       - name: Fetch configlet
         run: ./bin/fetch-configlet
@@ -65,95 +28,94 @@ jobs:
 
   markdownlint:
     name: markdown lint
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
-      - name: Checkout main
-        uses: actions/checkout@v2.3.4
-        with:
-          ref: main
       - name: Checkout code
-        uses: actions/checkout@v2.3.4
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
 
       - name: Run markdown lint
         run: ./bin/lint_markdown.sh
 
   # stolen from https://raw.githubusercontent.com/exercism/github-actions/main/.github/workflows/shellcheck.yml
   shellcheck:
-    name: shellcheck internal tooling lint
-    runs-on: ubuntu-latest
+    name: Run shellcheck on scripts
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v2.3.4 # 2.3.4
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
 
       - name: Run shellcheck
-        uses: ludeeus/action-shellcheck@94e0aab03ca135d11a35e5bfc14e6746dc56e7e9 # 1.0.0
+        uses: ludeeus/action-shellcheck@00cae500b08a931fb5698e11e79bfbd38e612a38 # v2.0.0
 
   compilation:
     name: Check compilation
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     strategy:
-      # Allows running the job multiple times with different configurations
       matrix:
         rust: ["stable", "beta"]
-        deny_warnings: ['', '1']
 
     steps:
-      # Checks out main locally so that it is available to the scripts.
-      - name: Checkout main
-        uses: actions/checkout@v2.3.4
-        with:
-          ref: main
-
-      # Checks out a copy of your repository on the ubuntu-latest machine
       - name: Checkout code
-        uses: actions/checkout@v2.3.4
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+
+      - name: Fetch origin/main
+        run: git fetch --depth=1 origin main
 
       - name: Setup toolchain
-        uses: actions-rs/toolchain@v1.0.7
+        uses: dtolnay/rust-toolchain@e97e2d8cc328f1b50210efc529dca0028893a2d9
         with:
           toolchain: ${{ matrix.rust }}
-          default: true
 
-      # run scripts as steps
       - name: Check exercises
         env:
-          DENYWARNINGS: ${{ matrix.deny_warnings }}
-        run: ./_test/check_exercises.sh
-        continue-on-error: ${{ matrix.rust == 'beta' && matrix.deny_warnings == '1' }}
+          DENYWARNINGS: "1"
+        run: ./bin/check_exercises.sh
 
-      - name: Ensure stubs compile
-        env:
-          DENYWARNINGS: ${{ matrix.deny_warnings }}
-        run: ./_test/ensure_stubs_compile.sh
-        continue-on-error: ${{ matrix.rust == 'beta' && matrix.deny_warnings == '1' }}
+  tests:
+    name: Run repository tests
+    runs-on: ubuntu-24.04
 
-      - name: Check exercise crate
-        env:
-          DENYWARNINGS: ${{ matrix.deny_warnings }}
-        run: ./_test/check_exercise_crate.sh
-        continue-on-error: ${{ matrix.rust == 'beta' && matrix.deny_warnings == '1' }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+
+      - name: Setup toolchain
+        uses: dtolnay/rust-toolchain@e97e2d8cc328f1b50210efc529dca0028893a2d9
+        with:
+          toolchain: stable
+          components: clippy
+
+      - name: Setup compilation cache
+        uses: Swatinem/rust-cache@f13886b937689c021905a6b90929199931d60db1 # v2.8.1
+        with:
+          workspaces: "rust-tooling -> rust-tooling/target"
+
+      - name: Fetch configlet
+        run: ./bin/fetch-configlet
+
+      - name: Checkout problem-specifications
+        run: ./bin/symlink_problem_specifications.sh
+
+      - name: Run tests
+        run: cd rust-tooling && cargo test
 
   rustformat:
     name: Check Rust Formatting
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2.3.4
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
 
       - name: Setup toolchain
-        uses: actions-rs/toolchain@v1.0.7
+        uses: dtolnay/rust-toolchain@e97e2d8cc328f1b50210efc529dca0028893a2d9
         with:
           toolchain: stable
-          default: true
-
-      - name: Rust Format Version
-        run: rustfmt --version
 
       - name: Format
-        run: bin/format_exercises
+        run: ./bin/format_exercises.sh
 
       - name: Diff
         run: |
@@ -164,65 +126,38 @@ jobs:
 
   clippy:
     name: Clippy
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        rust: ["stable", "beta"]
+    runs-on: ubuntu-24.04
 
     steps:
-      - name: Checkout main
-        uses: actions/checkout@v2.3.4
-        with:
-          ref: main
-
       - name: Checkout code
-        uses: actions/checkout@v2.3.4
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
 
       - name: Setup toolchain
-        uses: actions-rs/toolchain@v1.0.7
+        uses: dtolnay/rust-toolchain@e97e2d8cc328f1b50210efc529dca0028893a2d9
         with:
-          toolchain: ${{ matrix.rust }}
-          default: true
-
-      # Clippy already installed on Stable, but not Beta.
-      # So, we must install here.
-      - name: Install Clippy
-        run: rustup component add clippy
+          toolchain: stable
+          components: clippy
 
       - name: Clippy tests
         env:
           CLIPPY: true
-        run: ./_test/check_exercises.sh
-
-      - name: Clippy stubs
-        env:
-          CLIPPY: true
-        run: ./_test/ensure_stubs_compile.sh
+        run: ./bin/check_exercises.sh
 
   nightly-compilation:
     name: Check exercises on nightly (benchmark enabled)
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     continue-on-error: true # It's okay if the nightly job fails
 
     steps:
-      # Checks out main locally so that it is available to the scripts.
-      - name: Checkout main
-        uses: actions/checkout@v2.3.4
-        with:
-          ref: main
-
-      # Checks out a copy of your repository on the ubuntu-latest machine
       - name: Checkout code
-        uses: actions/checkout@v2.3.4
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
 
       - name: Setup nightly toolchain
-        uses: actions-rs/toolchain@v1.0.7
+        uses: dtolnay/rust-toolchain@e97e2d8cc328f1b50210efc529dca0028893a2d9
         with:
           toolchain: nightly
-          default: true
 
       - name: Check exercises
         env:
-          BENCHMARK: '1'
-        run: ./_test/check_exercises.sh
+          BENCHMARK: "1"
+        run: ./bin/check_exercises.sh

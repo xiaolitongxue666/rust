@@ -41,7 +41,7 @@ fn get_file_lines(file_name: &str) -> Result<Vec<String>, FileAccessError> {
     }
 
     if let Ok(content) = fs::read_to_string(file_path) {
-        Ok(content.split('\n').map(|line| line.to_string()).collect())
+        Ok(content.lines().map(|line| line.to_string()).collect())
     } else {
         Err(FileAccessError::FileReadError {
             file_name: String::from(file_name),
@@ -80,7 +80,6 @@ pub fn grep(pattern: &str, flags: &Flags, files: &[&str]) -> Result<Vec<String>,
                         inner_line.contains(&inner_pattern)
                     }
                 })
-                .filter(|(_, line)| !line.is_empty())
                 .map(|(line_number, line)| {
                     let mut result = line.to_owned();
 
@@ -89,11 +88,11 @@ pub fn grep(pattern: &str, flags: &Flags, files: &[&str]) -> Result<Vec<String>,
                     }
 
                     if is_multiple_file_search {
-                        result.insert_str(0, &format!("{}:", file_name))
+                        result.insert_str(0, &format!("{file_name}:"))
                     }
 
                     if flags.print_file_name {
-                        result = file_name.to_owned().to_owned();
+                        file_name.to_owned().clone_into(&mut result);
                     }
 
                     result

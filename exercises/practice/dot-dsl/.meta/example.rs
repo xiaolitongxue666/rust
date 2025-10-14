@@ -39,8 +39,14 @@ pub mod graph {
             self
         }
 
-        pub fn get_node(&self, name: &str) -> Option<&Node> {
+        pub fn node(&self, name: &str) -> Option<&Node> {
             self.nodes.iter().find(|n| n.name == name)
+        }
+    }
+
+    impl Default for Graph {
+        fn default() -> Self {
+            Self::new()
         }
     }
 
@@ -71,6 +77,10 @@ pub mod graph {
 
                     self
                 }
+
+                pub fn attr(&self, name: &str) -> Option<&str> {
+                    self.attrs.get(name).map(|v| v.as_ref())
+                }
             }
         }
 
@@ -100,7 +110,7 @@ pub mod graph {
                     self
                 }
 
-                pub fn get_attr(&self, name: &str) -> Option<&str> {
+                pub fn attr(&self, name: &str) -> Option<&str> {
                     self.attrs.get(name).map(|v| v.as_ref())
                 }
             }

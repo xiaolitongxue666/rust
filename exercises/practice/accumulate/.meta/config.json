@@ -1,5 +1,4 @@
 {
-  "blurb": "Implement the `accumulate` operation, which, given a collection and an operation to perform on each element of the collection, returns a new collection containing the result of applying that operation to each element of the input collection.",
   "authors": [
     "sacherjj"
   ],
@@ -21,7 +20,8 @@
   ],
   "files": {
     "solution": [
-      "src/lib.rs"
+      "src/lib.rs",
+      "Cargo.toml"
     ],
     "test": [
       "tests/accumulate.rs"
@@ -30,6 +30,10 @@
       ".meta/example.rs"
     ]
   },
+  "blurb": "Implement the `accumulate` operation, which, given a collection and an operation to perform on each element of the collection, returns a new collection containing the result of applying that operation to each element of the input collection.",
   "source": "Conversation with James Edward Gray II",
-  "source_url": "https://twitter.com/jeg2"
+  "source_url": "http://graysoftinc.com/",
+  "custom": {
+    "allowed-to-not-compile": "Stub doesn't compile because there is no type specified for the `function` argument. This exercise teaches students about the use of function pointers and closures, therefore specifying the type of arguments for them would reduce learning."
+  }
 }

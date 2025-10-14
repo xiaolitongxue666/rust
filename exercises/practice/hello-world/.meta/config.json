@@ -1,5 +1,4 @@
 {
-  "blurb": "The classical introductory exercise. Just say \"Hello, World!\"",
   "authors": [
     "EduardoBautista"
   ],
@@ -27,15 +26,17 @@
   ],
   "files": {
     "solution": [
-      "src/lib.rs"
+      "src/lib.rs",
+      "Cargo.toml"
     ],
     "test": [
-      "tests/hello-world.rs"
+      "tests/hello_world.rs"
     ],
     "example": [
       ".meta/example.rs"
     ]
   },
+  "blurb": "Exercism's classic introductory exercise. Just say \"Hello, World!\".",
   "source": "This is an exercise to introduce users to using Exercism",
-  "source_url": "http://en.wikipedia.org/wiki/%22Hello,_world!%22_program"
+  "source_url": "https://en.wikipedia.org/wiki/%22Hello,_world!%22_program"
 }

@@ -24,10 +24,11 @@
   ],
   "files": {
     "solution": [
-      "src/lib.rs"
+      "src/lib.rs",
+      "Cargo.toml"
     ],
     "test": [
-      "tests/nucleotide-codons.rs"
+      "tests/nucleotide_codons.rs"
     ],
     "example": [
       ".meta/example.rs"

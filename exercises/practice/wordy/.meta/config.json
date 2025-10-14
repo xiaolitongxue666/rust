@@ -1,5 +1,4 @@
 {
-  "blurb": "Parse and evaluate simple math word problems returning the answer as an integer.",
   "authors": [
     "IanWhitney"
   ],
@@ -24,7 +23,8 @@
   ],
   "files": {
     "solution": [
-      "src/lib.rs"
+      "src/lib.rs",
+      "Cargo.toml"
     ],
     "test": [
       "tests/wordy.rs"
@@ -33,6 +33,7 @@
       ".meta/example.rs"
     ]
   },
+  "blurb": "Parse and evaluate simple math word problems returning the answer as an integer.",
   "source": "Inspired by one of the generated questions in the Extreme Startup game.",
   "source_url": "https://github.com/rchatley/extreme_startup"
 }

@@ -1,65 +1,66 @@
-#[derive(Debug, PartialEq, Eq)]
+use std::cmp::Ordering;
+use std::collections::HashSet;
+
+#[derive(Debug, Clone)]
 pub struct Palindrome {
-    pub factors: Vec<(u64, u64)>,
+    value: u64,
+    factors: HashSet<(u64, u64)>,
 }
 
 impl Palindrome {
-    /// Create a palindrome with the given factors
-    pub fn new(mut a: u64, mut b: u64) -> Palindrome {
-        if a > b {
-            std::mem::swap(&mut a, &mut b);
-        }
-        Palindrome {
-            factors: vec![(a, b)],
+    pub fn new(value: u64, first_factors: (u64, u64)) -> Palindrome {
+        Self {
+            value,
+            factors: HashSet::from([first_factors]),
         }
     }
 
-    /// Return the palindrome's value
+    pub fn add_factor(&mut self, factor: (u64, u64)) -> bool {
+        self.factors.insert(factor)
+    }
+
     pub fn value(&self) -> u64 {
-        // this could in theory panic with a bounds error, but the length of
-        // self.factors is known to start at 1 and is only ever increased
-        self.factors[0].0 * self.factors[0].1
+        self.value
     }
 
-    /// Insert a new set of factors into an existing palindrome
-    pub fn insert(&mut self, mut a: u64, mut b: u64) {
-        if a > b {
-            std::mem::swap(&mut a, &mut b);
-        }
-        self.factors.push((a, b));
-        self.factors.sort_unstable();
-        self.factors.dedup();
+    pub fn into_factors(self) -> HashSet<(u64, u64)> {
+        self.factors
     }
 }
 
-/// return the (min, max) palindrome pair comprised of the products of numbers in the input range
 pub fn palindrome_products(min: u64, max: u64) -> Option<(Palindrome, Palindrome)> {
-    let mut result = None;
-
-    for a in min..=max {
-        for b in min..=a {
-            if is_palindrome(a * b) {
-                result = match result {
-                    None => Some((Palindrome::new(a, b), Palindrome::new(a, b))),
-                    Some((mut minp, mut maxp)) => {
-                        match (a * b).cmp(&minp.value()) {
-                            std::cmp::Ordering::Greater => {}
-                            std::cmp::Ordering::Less => minp = Palindrome::new(a, b),
-                            std::cmp::Ordering::Equal => minp.insert(a, b),
+    let mut pmin: Option<Palindrome> = None;
+    let mut pmax: Option<Palindrome> = None;
+    for i in min..=max {
+        for j in i..=max {
+            let p = i * j;
+            if is_palindrome(p) {
+                pmin = match pmin.as_ref().map(|prev| prev.value.cmp(&p)) {
+                    Some(Ordering::Less) => pmin,
+                    Some(Ordering::Equal) => {
+                        if i <= j {
+                            pmin.as_mut().unwrap().add_factor((i, j));
                         }
-                        match (a * b).cmp(&maxp.value()) {
-                            std::cmp::Ordering::Less => {}
-                            std::cmp::Ordering::Greater => maxp = Palindrome::new(a, b),
-                            std::cmp::Ordering::Equal => maxp.insert(a, b),
-                        }
-                        Some((minp, maxp))
+                        pmin
                     }
+                    Some(Ordering::Greater) | None => Some(Palindrome::new(p, (i, j))),
+                };
+
+                pmax = match pmax.as_ref().map(|prev| prev.value.cmp(&p)) {
+                    Some(Ordering::Greater) => pmax,
+                    Some(Ordering::Equal) => {
+                        if i <= j {
+                            pmax.as_mut().unwrap().add_factor((i, j));
+                        }
+                        pmax
+                    }
+                    Some(Ordering::Less) | None => Some(Palindrome::new(p, (i, j))),
                 };
             }
         }
     }
 
-    result
+    pmin.zip(pmax)
 }
 
 #[inline]

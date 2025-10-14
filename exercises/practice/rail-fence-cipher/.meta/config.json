@@ -1,5 +1,4 @@
 {
-  "blurb": "Implement encoding and decoding for the rail fence cipher.",
   "authors": [
     "coriolinus"
   ],
@@ -14,15 +13,17 @@
   ],
   "files": {
     "solution": [
-      "src/lib.rs"
+      "src/lib.rs",
+      "Cargo.toml"
     ],
     "test": [
-      "tests/rail-fence-cipher.rs"
+      "tests/rail_fence_cipher.rs"
     ],
     "example": [
       ".meta/example.rs"
     ]
   },
+  "blurb": "Implement encoding and decoding for the rail fence cipher.",
   "source": "Wikipedia",
   "source_url": "https://en.wikipedia.org/wiki/Transposition_cipher#Rail_Fence_cipher"
 }

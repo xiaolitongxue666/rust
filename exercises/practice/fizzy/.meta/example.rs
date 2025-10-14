@@ -31,6 +31,7 @@ where
         Fizzy(Vec::new())
     }
 
+    #[must_use]
     pub fn add_matcher(mut self, matcher: Matcher<T>) -> Self {
         let Fizzy(ref mut matchers) = self;
         matchers.push(matcher);
@@ -38,7 +39,7 @@ where
     }
 
     pub fn apply_to(&self, item: T) -> String {
-        let Fizzy(ref matchers) = self;
+        let Fizzy(matchers) = self;
         let mut out = String::new();
         for matcher in matchers {
             if (matcher.matcher)(item) {
@@ -84,7 +85,7 @@ mod test {
     use super::*;
 
     #[test]
-    fn test_fizz_buzz() {
+    fn fizz_buzz_i32() {
         let expect = vec![
             "1", "2", "fizz", "4", "buzz", "fizz", "7", "8", "fizz", "buzz", "11", "fizz", "13",
             "14", "fizzbuzz", "16",
@@ -94,7 +95,7 @@ mod test {
     }
 
     #[test]
-    fn test_fizz_buzz_u8() {
+    fn fizz_buzz_u8() {
         let expect = vec![
             "1", "2", "fizz", "4", "buzz", "fizz", "7", "8", "fizz", "buzz", "11", "fizz", "13",
             "14", "fizzbuzz", "16",
@@ -104,7 +105,7 @@ mod test {
     }
 
     #[test]
-    fn test_fizz_buzz_u64() {
+    fn fizz_buzz_u64() {
         let expect = vec![
             "1", "2", "fizz", "4", "buzz", "fizz", "7", "8", "fizz", "buzz", "11", "fizz", "13",
             "14", "fizzbuzz", "16",
@@ -114,7 +115,7 @@ mod test {
     }
 
     #[test]
-    fn test_fizz_buzz_nonsequential() {
+    fn fizz_buzz_nonsequential() {
         let collatz_12 = &[12, 6, 3, 10, 5, 16, 8, 4, 2, 1];
         let expect = vec![
             "fizz", "fizz", "fizz", "buzz", "buzz", "16", "8", "4", "2", "1",
@@ -126,7 +127,7 @@ mod test {
     }
 
     #[test]
-    fn test_fizz_buzz_custom() {
+    fn fizz_buzz_custom() {
         let expect = vec![
             "1", "2", "Fizz", "4", "Buzz", "Fizz", "Bam", "8", "Fizz", "Buzz", "11", "Fizz", "13",
             "Bam", "BuzzFizz", "16",
@@ -141,7 +142,7 @@ mod test {
     }
 
     #[test]
-    fn test_map() {
+    fn map() {
         let expect = vec![
             "1", "2", "fizz", "4", "buzz", "fizz", "7", "8", "fizz", "buzz", "11", "fizz", "13",
             "14", "fizzbuzz", "16",
@@ -154,7 +155,7 @@ mod test {
     }
 
     #[test]
-    fn test_fizz_buzz_f64() {
+    fn fizz_buzz_f64() {
         let expect = vec![
             "1", "2", "fizz", "4", "buzz", "fizz", "7", "8", "fizz", "buzz", "11", "fizz", "13",
             "14", "fizzbuzz", "16",

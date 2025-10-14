@@ -1,5 +1,4 @@
 {
-  "blurb": "TODO: add blurb for csv-builder exercise",
   "authors": [
     "gilescope",
     "coriolinus",
@@ -7,13 +6,15 @@
   ],
   "files": {
     "solution": [
-      "src/lib.rs"
+      "src/lib.rs",
+      "Cargo.toml"
     ],
     "test": [
-      "tests/csv-builder.rs"
+      "tests/csv_builder.rs"
     ],
     "exemplar": [
       ".meta/exemplar.rs"
     ]
-  }
+  },
+  "blurb": "Learn about strings and string slices while working on a CSV builder"
 }

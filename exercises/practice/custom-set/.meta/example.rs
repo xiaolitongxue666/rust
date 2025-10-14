@@ -5,8 +5,8 @@ pub struct CustomSet<T> {
 
 impl<T: Ord + Clone> PartialEq for CustomSet<T> {
     fn eq(&self, other: &Self) -> bool {
-        self.collection.iter().all(|x| other.contains(&x))
-            && other.collection.iter().all(|x| self.contains(&x))
+        self.collection.iter().all(|x| other.contains(x))
+            && other.collection.iter().all(|x| self.contains(x))
     }
 }
 
@@ -43,35 +43,38 @@ impl<T: Ord + Clone> CustomSet<T> {
         !self.collection.iter().any(|x| other.contains(x))
     }
 
+    #[must_use]
     pub fn intersection(&self, other: &Self) -> CustomSet<T> {
         CustomSet::new(
             &self
                 .collection
                 .iter()
-                .cloned()
                 .filter(|c| other.contains(c))
+                .cloned()
                 .collect::<Vec<_>>(),
         )
     }
 
+    #[must_use]
     pub fn union(&self, other: &Self) -> CustomSet<T> {
         CustomSet::new(
             &self
                 .collection
                 .iter()
+                .chain(other.collection.iter())
                 .cloned()
-                .chain(other.collection.iter().cloned())
                 .collect::<Vec<_>>(),
         )
     }
 
+    #[must_use]
     pub fn difference(&self, other: &Self) -> CustomSet<T> {
         CustomSet::new(
             &self
                 .collection
                 .iter()
-                .cloned()
                 .filter(|c| !other.contains(c))
+                .cloned()
                 .collect::<Vec<_>>(),
         )
     }

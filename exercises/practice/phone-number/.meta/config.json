@@ -1,5 +1,4 @@
 {
-  "blurb": "Clean up user-entered phone numbers so that they can be sent SMS messages.",
   "authors": [
     "EduardoBautista"
   ],
@@ -30,15 +29,17 @@
   ],
   "files": {
     "solution": [
-      "src/lib.rs"
+      "src/lib.rs",
+      "Cargo.toml"
     ],
     "test": [
-      "tests/phone-number.rs"
+      "tests/phone_number.rs"
     ],
     "example": [
       ".meta/example.rs"
     ]
   },
-  "source": "Event Manager by JumpstartLab",
-  "source_url": "http://tutorials.jumpstartlab.com/projects/eventmanager.html"
+  "blurb": "Clean up user-entered phone numbers so that they can be sent SMS messages.",
+  "source": "Exercise by the JumpstartLab team for students at The Turing School of Software and Design.",
+  "source_url": "https://turing.edu"
 }

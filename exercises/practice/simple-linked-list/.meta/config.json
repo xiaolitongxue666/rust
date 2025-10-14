@@ -1,5 +1,4 @@
 {
-  "blurb": "Write a simple linked list implementation that uses Elements and a List",
   "authors": [
     "kedeggel"
   ],
@@ -20,15 +19,17 @@
   ],
   "files": {
     "solution": [
-      "src/lib.rs"
+      "src/lib.rs",
+      "Cargo.toml"
     ],
     "test": [
-      "tests/simple-linked-list.rs"
+      "tests/simple_linked_list.rs"
     ],
     "example": [
       ".meta/example.rs"
     ]
   },
+  "blurb": "Write a simple linked list implementation that uses Elements and a List.",
   "source": "Inspired by 'Data Structures and Algorithms with Object-Oriented Design Patterns in Ruby', singly linked-lists.",
   "source_url": "https://web.archive.org/web/20160731005714/http://brpreiss.com/books/opus8/html/page96.html"
 }

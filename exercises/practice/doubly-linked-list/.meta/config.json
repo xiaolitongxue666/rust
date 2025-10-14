@@ -1,5 +1,4 @@
 {
-  "blurb": "linked-list",
   "authors": [
     "Emerentius"
   ],
@@ -13,13 +12,15 @@
   ],
   "files": {
     "solution": [
-      "src/lib.rs"
+      "src/lib.rs",
+      "Cargo.toml"
     ],
     "test": [
-      "tests/doubly-linked-list.rs"
+      "tests/doubly_linked_list.rs"
     ],
     "example": [
       ".meta/example.rs"
     ]
-  }
+  },
+  "blurb": "Write a more advanced doubly linked list implementation with cursors and iteration."
 }

@@ -1,5 +1,4 @@
 {
-  "blurb": "Report network IO statistics",
   "authors": [
     "coriolinus"
   ],
@@ -18,7 +17,8 @@
   ],
   "files": {
     "solution": [
-      "src/lib.rs"
+      "src/lib.rs",
+      "Cargo.toml"
     ],
     "test": [
       "tests/paasio.rs"
@@ -27,6 +27,7 @@
       ".meta/example.rs"
     ]
   },
+  "blurb": "Report network IO statistics.",
   "source": "Brian Matsuo",
   "source_url": "https://github.com/bmatsuo"
 }

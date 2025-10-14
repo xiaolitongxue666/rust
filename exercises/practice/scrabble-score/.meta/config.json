@@ -1,5 +1,4 @@
 {
-  "blurb": "Given a word, compute the Scrabble score for that word.",
   "authors": [
     "IanWhitney"
   ],
@@ -25,15 +24,17 @@
   ],
   "files": {
     "solution": [
-      "src/lib.rs"
+      "src/lib.rs",
+      "Cargo.toml"
     ],
     "test": [
-      "tests/scrabble-score.rs"
+      "tests/scrabble_score.rs"
     ],
     "example": [
       ".meta/example.rs"
     ]
   },
+  "blurb": "Given a word, compute the Scrabble score for that word.",
   "source": "Inspired by the Extreme Startup game",
   "source_url": "https://github.com/rchatley/extreme_startup"
 }

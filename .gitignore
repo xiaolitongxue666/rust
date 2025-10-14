@@ -1,5 +1,6 @@
 ### User part
 .DS_Store
+<<<<<<< HEAD
 .idea/
 
 ### Rust template
@@ -88,3 +89,13 @@ fabric.properties
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
 
+=======
+**/target
+tmp
+/bin/configlet
+exercises/*/*/Cargo.lock
+clippy.log
+.vscode
+.prob-spec
+problem-specifications
+>>>>>>> upstream/main

@@ -1,5 +1,5 @@
 {
-  "blurb": "Create a sentence of the form \"One for X, one for me.\"",
+  "blurb": "Create a sentence of the form \"One for X, one for me.\".",
   "authors": [
     "coriolinus"
   ],
@@ -20,10 +20,11 @@
   ],
   "files": {
     "solution": [
-      "src/lib.rs"
+      "src/lib.rs",
+      "Cargo.toml"
     ],
     "test": [
-      "tests/two-fer.rs"
+      "tests/two_fer.rs"
     ],
     "example": [
       ".meta/example.rs"

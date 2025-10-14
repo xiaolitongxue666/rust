@@ -1,51 +1,54 @@
 use fizzy::*;
 
-macro_rules! expect {
-    () => {
-        vec![
-            "1", "2", "fizz", "4", "buzz", "fizz", "7", "8", "fizz", "buzz", "11", "fizz", "13",
-            "14", "fizzbuzz", "16",
-        ]
-    };
-}
-
 #[test]
-fn test_simple() {
-    let got = fizz_buzz::<i32>().apply(1..=16).collect::<Vec<_>>();
-    assert_eq!(expect!(), got);
-}
-
-#[test]
-#[ignore]
-fn test_u8() {
-    let got = fizz_buzz::<u8>().apply(1_u8..=16).collect::<Vec<_>>();
-    assert_eq!(expect!(), got);
-}
-
-#[test]
-#[ignore]
-fn test_u64() {
-    let got = fizz_buzz::<u64>().apply(1_u64..=16).collect::<Vec<_>>();
-    assert_eq!(expect!(), got);
-}
-
-#[test]
-#[ignore]
-fn test_nonsequential() {
-    let collatz_12 = &[12, 6, 3, 10, 5, 16, 8, 4, 2, 1];
-    let expect = vec![
-        "fizz", "fizz", "fizz", "buzz", "buzz", "16", "8", "4", "2", "1",
+fn simple() {
+    let actual = fizz_buzz::<i32>().apply(1..=16).collect::<Vec<_>>();
+    let expected = [
+        "1", "2", "fizz", "4", "buzz", "fizz", "7", "8", "fizz", "buzz", "11", "fizz", "13", "14",
+        "fizzbuzz", "16",
     ];
-    let got = fizz_buzz::<i32>()
+    assert_eq!(actual, expected);
+}
+
+#[test]
+#[ignore]
+fn u8() {
+    let actual = fizz_buzz::<u8>().apply(1_u8..=16).collect::<Vec<_>>();
+    let expected = [
+        "1", "2", "fizz", "4", "buzz", "fizz", "7", "8", "fizz", "buzz", "11", "fizz", "13", "14",
+        "fizzbuzz", "16",
+    ];
+    assert_eq!(actual, expected);
+}
+
+#[test]
+#[ignore]
+fn u64() {
+    let actual = fizz_buzz::<u64>().apply(1_u64..=16).collect::<Vec<_>>();
+    let expected = [
+        "1", "2", "fizz", "4", "buzz", "fizz", "7", "8", "fizz", "buzz", "11", "fizz", "13", "14",
+        "fizzbuzz", "16",
+    ];
+    assert_eq!(actual, expected);
+}
+
+#[test]
+#[ignore]
+fn nonsequential() {
+    let collatz_12 = &[12, 6, 3, 10, 5, 16, 8, 4, 2, 1];
+    let actual = fizz_buzz::<i32>()
         .apply(collatz_12.iter().cloned())
         .collect::<Vec<_>>();
-    assert_eq!(expect, got);
+    let expected = vec![
+        "fizz", "fizz", "fizz", "buzz", "buzz", "16", "8", "4", "2", "1",
+    ];
+    assert_eq!(actual, expected);
 }
 
 #[test]
 #[ignore]
-fn test_custom() {
-    let expect = vec![
+fn custom() {
+    let expected = vec![
         "1", "2", "Fizz", "4", "Buzz", "Fizz", "Bam", "8", "Fizz", "Buzz", "11", "Fizz", "13",
         "Bam", "BuzzFizz", "16",
     ];
@@ -53,30 +56,28 @@ fn test_custom() {
         .add_matcher(Matcher::new(|n: i32| n % 5 == 0, "Buzz"))
         .add_matcher(Matcher::new(|n: i32| n % 3 == 0, "Fizz"))
         .add_matcher(Matcher::new(|n: i32| n % 7 == 0, "Bam"));
-    let got = fizzer.apply(1..=16).collect::<Vec<_>>();
-    assert_eq!(expect, got);
+    let actual = fizzer.apply(1..=16).collect::<Vec<_>>();
+    assert_eq!(actual, expected);
 }
 
 #[test]
 #[ignore]
-fn test_f64() {
+fn f64() {
     // a tiny bit more complicated becuase range isn't natively implemented on floats
-    // NOTE: this test depends on a language feature introduced in Rust 1.34. If you
-    // have an older compiler, upgrade. If you have an older compiler and cannot upgrade,
-    // feel free to ignore this test.
-    let got = fizz_buzz::<f64>()
+    let actual = fizz_buzz::<f64>()
         .apply(std::iter::successors(Some(1.0), |prev| Some(prev + 1.0)))
         .take(16)
         .collect::<Vec<_>>();
-    assert_eq!(expect!(), got);
+    let expected = [
+        "1", "2", "fizz", "4", "buzz", "fizz", "7", "8", "fizz", "buzz", "11", "fizz", "13", "14",
+        "fizzbuzz", "16",
+    ];
+    assert_eq!(actual, expected);
 }
 
 #[test]
 #[ignore]
-fn test_minimal_generic_bounds() {
-    // NOTE: this test depends on a language feature introduced in Rust 1.34. If you
-    // have an older compiler, upgrade. If you have an older compiler and cannot upgrade,
-    // feel free to ignore this test.
+fn minimal_generic_bounds() {
     use std::fmt;
     use std::ops::{Add, Rem};
 
@@ -91,8 +92,8 @@ fn test_minimal_generic_bounds() {
 
     impl fmt::Display for Fizzable {
         fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-            let Fizzable(ref n) = self;
-            write!(f, "{}", n)
+            let Fizzable(n) = self;
+            write!(f, "{n}")
         }
     }
 
@@ -114,11 +115,15 @@ fn test_minimal_generic_bounds() {
         }
     }
 
-    let got = fizz_buzz::<Fizzable>()
+    let actual = fizz_buzz::<Fizzable>()
         .apply(std::iter::successors(Some(Fizzable(1)), |prev| {
             Some(*prev + 1.into())
         }))
         .take(16)
         .collect::<Vec<_>>();
-    assert_eq!(expect!(), got);
+    let expected = [
+        "1", "2", "fizz", "4", "buzz", "fizz", "7", "8", "fizz", "buzz", "11", "fizz", "13", "14",
+        "fizzbuzz", "16",
+    ];
+    assert_eq!(actual, expected);
 }

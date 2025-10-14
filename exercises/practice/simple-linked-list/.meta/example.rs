@@ -1,5 +1,3 @@
-use std::iter::FromIterator;
-
 pub struct SimpleLinkedList<T> {
     head: Option<Box<Node<T>>>,
     len: usize,
@@ -8,6 +6,12 @@ pub struct SimpleLinkedList<T> {
 struct Node<T> {
     data: T,
     next: Option<Box<Node<T>>>,
+}
+
+impl<T> Default for SimpleLinkedList<T> {
+    fn default() -> Self {
+        Self::new()
+    }
 }
 
 impl<T> SimpleLinkedList<T> {
@@ -47,6 +51,7 @@ impl<T> SimpleLinkedList<T> {
         self.head.as_ref().map(|node| &node.data)
     }
 
+    #[must_use]
     pub fn rev(self) -> SimpleLinkedList<T> {
         let mut rev_list = SimpleLinkedList::new();
         let mut vec: Vec<_> = self.into();

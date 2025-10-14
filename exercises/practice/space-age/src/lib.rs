@@ -6,16 +6,13 @@ pub struct Duration;
 
 impl From<u64> for Duration {
     fn from(s: u64) -> Self {
-        unimplemented!("s, measured in seconds: {}", s)
+        todo!("s, measured in seconds: {s}")
     }
 }
 
 pub trait Planet {
     fn years_during(d: &Duration) -> f64 {
-        unimplemented!(
-            "convert a duration ({:?}) to the number of years on this planet for that duration",
-            d,
-        );
+        todo!("convert a duration ({d:?}) to the number of years on this planet for that duration");
     }
 }
 

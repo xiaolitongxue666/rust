@@ -1,5 +1,4 @@
 {
-  "blurb": "Implement run-length encoding and decoding.",
   "authors": [
     "divagant-martian"
   ],
@@ -21,15 +20,17 @@
   ],
   "files": {
     "solution": [
-      "src/lib.rs"
+      "src/lib.rs",
+      "Cargo.toml"
     ],
     "test": [
-      "tests/run-length-encoding.rs"
+      "tests/run_length_encoding.rs"
     ],
     "example": [
       ".meta/example.rs"
     ]
   },
+  "blurb": "Implement run-length encoding and decoding.",
   "source": "Wikipedia",
   "source_url": "https://en.wikipedia.org/wiki/Run-length_encoding"
 }

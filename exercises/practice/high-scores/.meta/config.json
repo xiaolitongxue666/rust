@@ -1,5 +1,4 @@
 {
-  "blurb": "Manage a player's High Score list",
   "authors": [
     "Br1ght0ne"
   ],
@@ -11,14 +10,16 @@
   ],
   "files": {
     "solution": [
-      "src/lib.rs"
+      "src/lib.rs",
+      "Cargo.toml"
     ],
     "test": [
-      "tests/high-scores.rs"
+      "tests/high_scores.rs"
     ],
     "example": [
       ".meta/example.rs"
     ]
   },
+  "blurb": "Manage a player's High Score list.",
   "source": "Tribute to the eighties' arcade game Frogger"
 }

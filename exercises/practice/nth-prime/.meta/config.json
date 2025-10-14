@@ -1,5 +1,4 @@
 {
-  "blurb": "Given a number n, determine what the nth prime is.",
   "authors": [
     "sacherjj"
   ],
@@ -22,15 +21,17 @@
   ],
   "files": {
     "solution": [
-      "src/lib.rs"
+      "src/lib.rs",
+      "Cargo.toml"
     ],
     "test": [
-      "tests/nth-prime.rs"
+      "tests/nth_prime.rs"
     ],
     "example": [
       ".meta/example.rs"
     ]
   },
+  "blurb": "Given a number n, determine what the nth prime is.",
   "source": "A variation on Problem 7 at Project Euler",
-  "source_url": "http://projecteuler.net/problem=7"
+  "source_url": "https://projecteuler.net/problem=7"
 }

@@ -1,5 +1,4 @@
 {
-  "blurb": "Create an implementation of the atbash cipher, an ancient encryption system created in the Middle East.",
   "authors": [
     "nikhilshagri"
   ],
@@ -24,15 +23,17 @@
   ],
   "files": {
     "solution": [
-      "src/lib.rs"
+      "src/lib.rs",
+      "Cargo.toml"
     ],
     "test": [
-      "tests/atbash-cipher.rs"
+      "tests/atbash_cipher.rs"
     ],
     "example": [
       ".meta/example.rs"
     ]
   },
+  "blurb": "Create an implementation of the Atbash cipher, an ancient encryption system created in the Middle East.",
   "source": "Wikipedia",
-  "source_url": "http://en.wikipedia.org/wiki/Atbash"
+  "source_url": "https://en.wikipedia.org/wiki/Atbash"
 }
