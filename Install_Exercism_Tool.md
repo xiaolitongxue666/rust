@@ -160,9 +160,15 @@ exercism version
 # 配置 API Token
 exercism configure --token=YOUR_API_TOKEN
 
-# 配置工作目录（可选）
+# 配置工作目录（重要：影响下载路径）
 exercism configure --workspace=/path/to/your/exercism/workspace
 ```
+
+**工作空间配置说明**：
+- exercism CLI 会在工作空间下自动创建以轨道名命名的子目录
+- 对于 Rust 轨道，会创建 `rust` 子目录
+- 实际下载路径：`工作空间/rust/练习名/`
+- 建议将工作空间设置为父目录，而不是 `rust` 目录本身
 
 ### 3. 验证配置
 
@@ -181,7 +187,7 @@ exercism whoami
 # 配置 API Token（从 https://exercism.org/settings 获取）
 exercism configure --token=YOUR_API_TOKEN
 
-# 配置工作目录（可选）
+# 配置工作目录（重要：影响下载路径）
 exercism configure --workspace=/path/to/your/exercism/workspace
 
 # 查看当前配置
@@ -194,6 +200,17 @@ exercism workspace
 **注意**：在 Windows Git Bash 中，如果 PATH 未正确设置，需要使用完整路径：
 ```bash
 C:/tools/exercism/exercism.exe configure --token=YOUR_API_TOKEN
+```
+
+**工作空间路径配置示例**：
+```bash
+# 正确配置：工作空间设置为父目录
+exercism configure --workspace=E:/Code/my_code/Rust
+# 实际下载路径：E:/Code/my_code/Rust/rust/flower-field
+
+# 错误配置：工作空间设置为 rust 目录
+exercism configure --workspace=E:/Code/my_code/Rust/rust
+# 实际下载路径：E:/Code/my_code/Rust/rust/rust/flower-field (多了一层 rust)
 ```
 
 ### 2. 下载练习
@@ -356,7 +373,7 @@ exercism configure --token=your-api-token-here
 # 2. 查看配置
 exercism configure --show
 
-# 3. 设置工作目录（可选）
+# 3. 设置工作目录（重要：影响下载路径）
 exercism configure --workspace=/path/to/exercism
 
 # 4. 查看工作空间路径
@@ -368,8 +385,17 @@ exercism workspace
 打开 https://exercism.org/settings/api_cli 拷贝token
 
 ```bash
+# 配置 API Token
 C:/tools/exercism/exercism.exe configure --token=your-api-token-here
+
+# 配置工作空间（重要：影响下载路径）
+C:/tools/exercism/exercism.exe configure --workspace=E:/Code/my_code/Rust
+
+# 查看配置
 C:/tools/exercism/exercism.exe configure --show
+
+# 查看工作空间路径
+C:/tools/exercism/exercism.exe workspace
 ```
 
 ### 2. 下载并解决练习
@@ -501,19 +527,26 @@ cargo test
 ### 目录结构说明
 
 ```
-exercism/rust/                    # 项目根目录（包含所有练习）
-├── hello-world/                  # 单个练习目录
-│   ├── .exercism/               # exercism 元数据（重要！）
-│   ├── src/lib.rs              # 源代码
-│   ├── tests/                  # 测试文件
-│   └── README.md               # 练习说明
-├── anagram/                     # 另一个练习目录
-│   ├── .exercism/
-│   └── ...
-└── ...
+E:/Code/my_code/Rust/             # 工作空间（workspace）
+└── rust/                         # 自动创建的轨道目录
+    ├── hello-world/              # 单个练习目录
+    │   ├── .exercism/           # exercism 元数据（重要！）
+    │   ├── src/lib.rs          # 源代码
+    │   ├── tests/              # 测试文件
+    │   └── README.md           # 练习说明
+    ├── anagram/                 # 另一个练习目录
+    │   ├── .exercism/
+    │   └── ...
+    ├── flower-field/            # 新下载的练习
+    │   ├── .exercism/
+    │   └── ...
+    └── ...
 ```
 
-**关键点**：只有包含 `.exercism` 文件夹的目录才是有效的练习目录，才能运行 `test`、`submit`、`status` 等命令。
+**关键点**：
+- exercism CLI 会自动在工作空间下创建以轨道名命名的子目录
+- 只有包含 `.exercism` 文件夹的目录才是有效的练习目录
+- 才能运行 `test`、`submit`、`status` 等命令
 
 ## Windows Git Bash 特殊说明
 
@@ -589,6 +622,17 @@ source ~/.bashrc
    - 确保在练习目录中运行 `exercism submit`
    - 检查文件路径是否正确
    - 可以使用 `exercism submit .` 提交所有相关文件
+
+8. **下载路径问题（多了一层目录）**
+   - 检查工作空间配置：`exercism configure --show`
+   - 确保工作空间设置为父目录，而不是 `rust` 目录本身
+   - 正确配置：`exercism configure --workspace=E:/Code/my_code/Rust`
+   - 错误配置：`exercism configure --workspace=E:/Code/my_code/Rust/rust`
+
+9. **练习下载到错误位置**
+   - 使用 `exercism workspace` 查看当前工作空间
+   - 重新配置工作空间：`exercism configure --workspace=正确路径`
+   - 使用 `--force` 参数重新下载：`exercism download --exercise=练习名 --track=rust --force`
 
 ### 诊断命令
 
