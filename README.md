@@ -5,7 +5,9 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[![Discourse topics](https://img.shields.io/discourse/topics?color=8A08E6&label=Connect%20&labelColor=FFDF58&logo=Discourse&logoColor=8A08E6&server=https%3A%2F%2Fforum.exercism.org&style=social)](https://forum.exercism.org)
 &nbsp;&nbsp;[![Exercism_III](https://img.shields.io/badge/PAUSED-C73D4E?labelColor=3D454D&label=Contributions)](https://exercism.org/blog/freeing-our-maintainers)
-&nbsp;&nbsp;[![CI](https://github.com/exercism/rust/workflows/CI/badge.svg?branch=main)](https://github.com/exercism/rust/actions?query=workflow%3ACI+branch%3Amain)
+&nbsp;&nbsp;[![CI](https://github.com/xiaolitongxue666/rust/workflows/CI/badge.svg?branch=main)](https://github.com/xiaolitongxue666/rust/actions?query=workflow%3ACI+branch%3Amain)
+
+> **个人练习仓库**：Fork 自 [exercism/rust](https://github.com/exercism/rust)，用于 Rust 学习与 Exercism 题目练习。根目录下的各题目文件夹为 `exercism download` 下载的实现目录。
 
 <br>
 
@@ -19,7 +21,7 @@ This repo holds all the instructions, tests, code, & support files for Rust _exe
 Some Exercism language tracks have a **syllabus** which is meant to teach the language step-by-step.
 The Rust track's syllabus is a work in progress and it's not activated yet.
 All exercises presented to students are **practice exercises**.
-Students are exepcted to learn the language themselves, for example with the [official book][the-rust-programming-language], and practice with our exercises.
+Students are expected to learn the language themselves, for example with the [official book][the-rust-programming-language], and practice with our exercises.
 
 <br><br>
 
@@ -58,6 +60,48 @@ _Thoughtful suggestions will likely result faster & more enthusiastic responses 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Writing Style Guide][exercism-writing-style] **|** [Markdown Specification][exercism-markdown-specification] (_✨ version in [contributing][website-contributing-section] on exercism.org_)
 
 <br>
+<br>
+
+## 24 题练习顺序（学习参考）
+
+| 序号 | 题目 | 难度 | 主要考点 |
+| --- | --- | --- | --- |
+| 1 | rotational-cipher | Medium | char、ASCII、迭代器 |
+| 2 | simple-cipher | Medium | Vigenère 密码、char |
+| 3 | word-count | Medium | HashMap、Entry API、字符串解析 |
+| 4 | secret-handshake | Medium | 位运算、二进制 |
+| 5 | knapsack | Medium | 动态规划 |
+| 6 | yacht | Medium | 骰子计分、模式匹配 |
+| 7 | matrix | Medium | 迭代器、切片 |
+| 8 | fizzy | Hard | 泛型、impl Trait、迭代器 |
+| 9 | pythagorean-triplet | Medium | 数学、三元组 |
+| 10 | parallel-letter-frequency | Hard | 多线程、并发 |
+| 11 | macros | Hard | 声明宏 macro_rules! |
+| 12 | pov | Hard | 树结构、图算法 |
+| 13 | poker | Hard | 解析、枚举、比较 |
+| 14 | forth | Hard | 栈、词法解析 |
+| 15 | ocr-numbers | Hard | 模式匹配、3x4 网格 |
+| 16 | react | Hard | 响应式、闭包、图 |
+| 17 | circular-buffer | Hard | 环形缓冲区、泛型 |
+| 18 | rectangles | Hard | ASCII 图形、算法 |
+| 19 | xorcism | Hard | XOR、生命周期、迭代器 |
+| 20 | book-store | Medium | 动态规划、组合优化 |
+| 21 | decimal | Medium | 任意精度、traits |
+| 22 | grep | Medium | 文件 I/O、anyhow |
+| 23 | dominoes | Hard | 图论、回溯 |
+| 24 | doubly-linked-list | Hard | unsafe、裸指针 |
+
+**测试命令**：`cargo test -- --include-ignored`  
+**特殊**：xorcism 需 `--features io`；doubly-linked-list 需 `--features advanced`
+
+### 项目结构
+
+| 路径 | 说明 |
+| --- | --- |
+| `rotational-cipher/`、`simple-cipher/` 等 | 个人实现的题目（`exercism download` 下载） |
+| `exercises/practice/<slug>/` | 题目规范定义与参考实现 |
+| `Install_Exercism_Tool.md` | Exercism CLI 安装与使用指南 |
+
 <br>
 
 ## Exercism Rust Track License
