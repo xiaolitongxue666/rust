@@ -1,3 +1,7 @@
+//! 谚语生成：For want of a X the Y was lost. And all for the want of a 首词.
+//!
+//! 考点：切片迭代、相邻元素配对、字符串拼接
+
 pub fn build_proverb(list: &[&str]) -> String {
     let mut iter = list.iter();
     let first_iterm;
@@ -5,18 +9,18 @@ pub fn build_proverb(list: &[&str]) -> String {
     match if_empty_iter {
         None => {
             return "".to_string();
-        },
+        }
         Some(x) => first_iterm = x,
     }
 
-    println!(" Iterm is {} ." , first_iterm);
+    println!(" Iterm is {} .", first_iterm);
     let mut first_flug = true;
     let mut second_iterm;
     let mut in_for_first_iterm = first_iterm;
-    let mut result_string:String = "".to_string();
+    let mut result_string: String = "".to_string();
     for val in iter {
         second_iterm = &val;
-        println!(" Iterm in for is {} ." , second_iterm);
+        println!(" Iterm in for is {} .", second_iterm);
         if first_flug {
             result_string.push_str("For want of a ");
             first_flug = false;

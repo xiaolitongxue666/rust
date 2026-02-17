@@ -7,8 +7,8 @@
 //! - `char::is_alphabetic()` 判断字母
 //! - `rayon::ThreadPoolBuilder` 限制 worker 数量
 
-use std::collections::HashMap;
 use rayon::prelude::*;
+use std::collections::HashMap;
 
 /// 统计单段文本中的字母频率（小写）
 fn count_letters(text: &str) -> HashMap<char, usize> {
@@ -20,10 +20,7 @@ fn count_letters(text: &str) -> HashMap<char, usize> {
 }
 
 /// 合并两个 HashMap
-fn merge_counts(
-    mut a: HashMap<char, usize>,
-    b: HashMap<char, usize>,
-) -> HashMap<char, usize> {
+fn merge_counts(mut a: HashMap<char, usize>, b: HashMap<char, usize>) -> HashMap<char, usize> {
     for (k, v) in b {
         *a.entry(k).or_insert(0) += v;
     }
@@ -42,14 +39,9 @@ pub fn frequency(input: &[&str], worker_count: usize) -> HashMap<char, usize> {
         .unwrap();
 
     pool.install(|| {
-        let results: Vec<HashMap<char, usize>> = input
-            .par_iter()
-            .map(|text| count_letters(text))
-            .collect();
+        let results: Vec<HashMap<char, usize>> =
+            input.par_iter().map(|text| count_letters(text)).collect();
 
-        results
-            .into_iter()
-            .reduce(merge_counts)
-            .unwrap_or_default()
+        results.into_iter().reduce(merge_counts).unwrap_or_default()
     })
 }

@@ -125,9 +125,7 @@ impl<'a, T> Iterator for Iter<'a, T> {
 
 impl<T> Cursor<'_, T> {
     pub fn peek_mut(&mut self) -> Option<&mut T> {
-        unsafe {
-            self.node.map(|node| &mut (*node.as_ptr()).element)
-        }
+        unsafe { self.node.map(|node| &mut (*node.as_ptr()).element) }
     }
 
     #[allow(clippy::should_implement_trait)]

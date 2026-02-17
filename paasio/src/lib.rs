@@ -3,9 +3,9 @@ use std::io::{Read, Result, Write};
 // 泛型参数 R 代表任何实现了 Read trait 的类型（Reader）
 // 可以是文件、网络连接、内存缓冲区等任何读取器
 pub struct ReadStats<R> {
-    wrapped: R,           // 被包装的读取器，类型为 R
-    bytes_read: usize,   // 统计：总读取字节数
-    read_count: usize,   // 统计：读取操作次数
+    wrapped: R,        // 被包装的读取器，类型为 R
+    bytes_read: usize, // 统计：总读取字节数
+    read_count: usize, // 统计：读取操作次数
 }
 
 // R: Read 是 trait bound，确保 R 必须实现 Read trait
@@ -15,9 +15,9 @@ impl<R: Read> ReadStats<R> {
     // R 的具体类型由编译器根据传入参数自动推断
     pub fn new(wrapped: R) -> ReadStats<R> {
         ReadStats {
-            wrapped,        // 存储被包装的读取器
-            bytes_read: 0,   // 初始化统计计数器
-            read_count: 0,  // 初始化统计计数器
+            wrapped,       // 存储被包装的读取器
+            bytes_read: 0, // 初始化统计计数器
+            read_count: 0, // 初始化统计计数器
         }
     }
 
@@ -46,11 +46,11 @@ impl<R: Read> Read for ReadStats<R> {
         // 调用被包装读取器的 read 方法
         // 由于 R: Read，编译器保证这个方法存在
         let bytes_read = self.wrapped.read(buf)?;
-        
+
         // 更新统计信息：只有操作成功时才统计
-        self.bytes_read += bytes_read;  // 累加读取字节数
-        self.read_count += 1;          // 增加操作次数
-        
+        self.bytes_read += bytes_read; // 累加读取字节数
+        self.read_count += 1; // 增加操作次数
+
         // 返回读取的字节数，保持透明性
         Ok(bytes_read)
     }
@@ -59,9 +59,9 @@ impl<R: Read> Read for ReadStats<R> {
 // 泛型参数 W 代表任何实现了 Write trait 的类型（Writer）
 // 可以是文件、网络连接、内存缓冲区等任何写入器
 pub struct WriteStats<W> {
-    wrapped: W,             // 被包装的写入器，类型为 W
-    bytes_written: usize,   // 统计：总写入字节数
-    write_count: usize,     // 统计：写入操作次数
+    wrapped: W,           // 被包装的写入器，类型为 W
+    bytes_written: usize, // 统计：总写入字节数
+    write_count: usize,   // 统计：写入操作次数
 }
 
 // W: Write 是 trait bound，确保 W 必须实现 Write trait
@@ -72,8 +72,8 @@ impl<W: Write> WriteStats<W> {
     pub fn new(wrapped: W) -> WriteStats<W> {
         WriteStats {
             wrapped,          // 存储被包装的写入器
-            bytes_written: 0,  // 初始化统计计数器
-            write_count: 0,    // 初始化统计计数器
+            bytes_written: 0, // 初始化统计计数器
+            write_count: 0,   // 初始化统计计数器
         }
     }
 
@@ -102,11 +102,11 @@ impl<W: Write> Write for WriteStats<W> {
         // 调用被包装写入器的 write 方法
         // 由于 W: Write，编译器保证这个方法存在
         let bytes_written = self.wrapped.write(buf)?;
-        
+
         // 更新统计信息：只有操作成功时才统计
-        self.bytes_written += bytes_written;  // 累加写入字节数
-        self.write_count += 1;               // 增加操作次数
-        
+        self.bytes_written += bytes_written; // 累加写入字节数
+        self.write_count += 1; // 增加操作次数
+
         // 返回写入的字节数，保持透明性
         Ok(bytes_written)
     }

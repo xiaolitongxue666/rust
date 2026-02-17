@@ -1,3 +1,7 @@
+//! 学校名册：按年级管理学生，支持添加、按年级查询
+//!
+//! 考点：HashMap、BTreeSet 去重排序、Entry API (or_insert_with)
+
 use std::collections::{BTreeSet, HashMap};
 
 pub struct School {

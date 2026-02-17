@@ -1,3 +1,7 @@
+//! 高分榜：最新分、最高分、前三名
+//!
+//! 考点：生命周期 'a、切片引用、last/max、sort_by 降序、truncate
+
 #[derive(Debug)]
 pub struct HighScores<'a> {
     high_scores: &'a [u32],

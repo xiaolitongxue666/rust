@@ -37,7 +37,7 @@ fn a_win_can_also_be_expressed_as_a_loss() {
     assert_eq!(output, expected);
 }
 
-#[test]     
+#[test]
 fn a_different_team_can_win() {
     let input: &[&str] = &["Blithering Badgers;Allegoric Alaskans;win"];
     let input = input.join("\n");
@@ -185,7 +185,7 @@ fn ties_broken_alphabetically() {
     assert_eq!(output, expected);
 }
 
-#[test]     
+#[test]
 fn ensure_points_sorted_numerically() {
     let input: &[&str] = &[
         "Devastating Donkeys;Blithering Badgers;win",

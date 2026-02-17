@@ -1,5 +1,8 @@
-/// 将明文字符转换为密文字符
-/// Atbash 密码：a->z, b->y, c->x, ..., z->a
+//! Atbash 密码：字母表反转 a↔z，对称加密
+//!
+//! 考点：char 与 u8 转换、b'z'-index 反转、每 5 字符加空格
+
+/// 将明文字符转换为密文字符：a->z, b->y, ..., z->a
 fn atbash_transform(ch: char) -> Option<char> {
     if ch.is_ascii_alphabetic() {
         // 转换为小写并计算索引（0-25）
@@ -13,7 +16,7 @@ fn atbash_transform(ch: char) -> Option<char> {
 }
 
 /// 使用 Atbash 密码加密明文
-/// 
+///
 /// # 规则
 /// - 字母转换为小写并应用 Atbash 转换
 /// - 数字保持不变
@@ -22,7 +25,7 @@ fn atbash_transform(ch: char) -> Option<char> {
 pub fn encode(plain: &str) -> String {
     let mut result = String::new();
     let mut count = 0; // 用于每 5 个字符添加空格
-    
+
     for ch in plain.chars() {
         if ch.is_ascii_alphabetic() {
             // 每 5 个字符添加一个空格
@@ -43,19 +46,19 @@ pub fn encode(plain: &str) -> String {
         }
         // 忽略空格和标点符号
     }
-    
+
     result
 }
 
 /// 使用 Atbash 密码解密密文
-/// 
+///
 /// # 规则
 /// - Atbash 是对称密码，加密和解密使用相同的转换
 /// - 忽略空格
 /// - 数字保持不变
 pub fn decode(cipher: &str) -> String {
     let mut result = String::new();
-    
+
     for ch in cipher.chars() {
         if ch.is_ascii_alphabetic() {
             // Atbash 是对称的，使用相同的转换函数
@@ -68,6 +71,6 @@ pub fn decode(cipher: &str) -> String {
         }
         // 忽略空格和标点符号
     }
-    
+
     result
 }

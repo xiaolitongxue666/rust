@@ -1,3 +1,7 @@
+//! 首字母缩写：取每个词的首字母（含驼峰、连字符、下划线分词）
+//!
+//! 考点：chars、enumerate、is_alphabetic、is_whitespace、驼峰检测（前小写+当前大写）
+
 pub fn abbreviate(phrase: &str) -> String {
     let mut result = String::new();
     let chars: Vec<char> = phrase.chars().collect();

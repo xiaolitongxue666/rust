@@ -87,8 +87,7 @@ impl Forth {
                             std::mem::replace(&mut mode, Mode::Execution)
                         {
                             self.definitions.push(definition);
-                            self.words
-                                .insert(word, self.definitions.len() - 1);
+                            self.words.insert(word, self.definitions.len() - 1);
                         } else {
                             unreachable!();
                         }

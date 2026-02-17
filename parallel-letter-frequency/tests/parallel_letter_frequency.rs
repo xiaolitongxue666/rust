@@ -1,5 +1,5 @@
-use std::collections::HashMap;
 use parallel_letter_frequency as frequency;
+use std::collections::HashMap;
 
 #[test]
 fn no_texts() {

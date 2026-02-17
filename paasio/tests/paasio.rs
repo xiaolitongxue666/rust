@@ -443,7 +443,7 @@ fn read_propagates_errors() {
     assert_eq!(e.get_ref().unwrap().to_string(), ReadFails::MESSAGE);
 }
 
-#[test]     
+#[test]
 fn write_propagates_errors() {
     use paasio::WriteStats;
 

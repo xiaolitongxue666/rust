@@ -1,5 +1,10 @@
+//! 罗马数字转换：阿拉伯数字 → 罗马数字字符串
+//!
+//! 考点：From trait、Display trait、贪心匹配（从大到小减）、const 静态表
+
 use std::fmt::{Display, Formatter, Result};
 
+/// 从大到小排列的 (数值, 符号) 表，便于贪心
 const SYMBOLS: &[(u32, &str)] = &[
     (1000, "M"),
     (900, "CM"),

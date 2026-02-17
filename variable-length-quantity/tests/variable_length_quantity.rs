@@ -218,7 +218,7 @@ fn four_bytes() {
     assert_eq!(output, expected);
 }
 
-#[test] 
+#[test]
 fn maximum_32_bit_integer() {
     let input = &[0x8f, 0xff, 0xff, 0xff, 0x7f];
     let output = vlq::from_bytes(input);

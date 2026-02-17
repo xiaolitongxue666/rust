@@ -8,10 +8,10 @@ pub struct PascalsTriangle {
 
 impl PascalsTriangle {
     /// 创建一个新的杨辉三角
-    /// 
+    ///
     /// # 参数
     /// * `row_count` - 要生成的行数
-    /// 
+    ///
     /// # 返回
     /// 返回包含指定行数的杨辉三角实例
     pub fn new(row_count: u32) -> Self {
@@ -39,7 +39,7 @@ impl PascalsTriangle {
     }
 
     /// 获取所有行的数据
-    /// 
+    ///
     /// # 返回
     /// 返回包含所有行的向量的副本
     pub fn rows(&self) -> Vec<Vec<u32>> {

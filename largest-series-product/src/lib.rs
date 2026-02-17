@@ -30,7 +30,6 @@ pub fn lsp(string_digits: &str, span: usize) -> Result<u64, Error> {
         }
         star_index += 1;
     }
-    
+
     Ok(max_product.into())
-    
 }

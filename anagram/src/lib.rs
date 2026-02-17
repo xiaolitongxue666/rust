@@ -16,8 +16,8 @@ pub fn anagrams_for<'a>(word: &str, possible_anagrams: &[&'a str]) -> HashSet<&'
             // println!("Possible anagrams : {:?}", iterm);
             // println!("Word : {:?}
 
-            let temp_word = word.clone().to_lowercase();
-            let temp_iterm = iterm.clone().to_lowercase();
+            let temp_word = word.to_lowercase();
+            let temp_iterm = iterm.to_lowercase();
             println!("Temp word : {}", temp_word);
             println!("Temp iterm : {}", temp_iterm);
 

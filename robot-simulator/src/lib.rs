@@ -67,14 +67,14 @@ impl Robot {
 
     #[must_use]
     pub fn instructions(self, instructions: &str) -> Self {
-        instructions.chars().fold(self, |robot, instruction| {
-            match instruction {
+        instructions
+            .chars()
+            .fold(self, |robot, instruction| match instruction {
                 'R' => robot.turn_right(),
                 'L' => robot.turn_left(),
                 'A' => robot.advance(),
                 _ => robot,
-            }
-        })
+            })
     }
 
     pub fn position(&self) -> (i32, i32) {

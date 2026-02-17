@@ -1,3 +1,7 @@
+//! 二分查找：在有序数组中 O(log n) 查找
+//!
+//! 考点：Option、cmp::Ordering、mid = left + (right-left)/2 防溢出
+
 /// 在已排序的数组中查找目标值的索引
 /// 使用二分搜索算法，时间复杂度 O(log n)
 ///

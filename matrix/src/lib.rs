@@ -39,11 +39,6 @@ impl Matrix {
         if col_no == 0 || self.rows.is_empty() || col_no > self.rows[0].len() {
             return None;
         }
-        Some(
-            self.rows
-                .iter()
-                .map(|row| row[col_no - 1])
-                .collect(),
-        )
+        Some(self.rows.iter().map(|row| row[col_no - 1]).collect())
     }
 }

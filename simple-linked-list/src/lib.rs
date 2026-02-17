@@ -1,3 +1,7 @@
+//! 单向链表：头插法、Box 实现递归结构
+//!
+//! 考点：Option<Box<Node>>、take() 转移所有权、FromIterator、Into<Vec>、rev 反转
+
 use std::iter::FromIterator;
 
 struct Node<T> {
@@ -12,10 +16,7 @@ pub struct SimpleLinkedList<T> {
 
 impl<T> SimpleLinkedList<T> {
     pub fn new() -> Self {
-        SimpleLinkedList {
-            head: None,
-            len: 0,
-        }
+        SimpleLinkedList { head: None, len: 0 }
     }
 
     // 你可能想知道为什么需要 is_empty()
@@ -64,7 +65,7 @@ impl<T> SimpleLinkedList<T> {
 
 impl<T> FromIterator<T> for SimpleLinkedList<T> {
     /// 从迭代器创建链表
-    /// 
+    ///
     /// 迭代器中的每个元素会被 push 到链表中
     fn from_iter<I: IntoIterator<Item = T>>(iter: I) -> Self {
         let mut list = SimpleLinkedList::new();
@@ -87,18 +88,18 @@ impl<T> FromIterator<T> for SimpleLinkedList<T> {
 
 impl<T> Into<Vec<T>> for SimpleLinkedList<T> {
     /// 将链表转换为向量
-    /// 
+    ///
     /// 按照链表中元素的顺序（从头部到尾部）转换为 Vec
     fn into(self) -> Vec<T> {
         let mut vec = Vec::new();
         let mut current = self.head;
-        
+
         // 遍历链表，将元素添加到向量中
         while let Some(node) = current {
             vec.push(node.data);
             current = node.next;
         }
-        
+
         // 由于链表是栈式的（LIFO），需要反转向量以匹配 push 的原始顺序
         vec.reverse();
         vec

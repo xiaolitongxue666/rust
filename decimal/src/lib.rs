@@ -51,10 +51,7 @@ impl Decimal {
             }
         }
         let digits: BigInt = digits_str.parse().ok()?;
-        Some(Decimal::new(
-            digits,
-            decimal_index.unwrap_or(0),
-        ))
+        Some(Decimal::new(digits, decimal_index.unwrap_or(0)))
     }
 
     fn equalize_precision(a: &mut Decimal, b: &mut Decimal) {
@@ -154,12 +151,7 @@ impl fmt::Display for Decimal {
         let out = if frac_part.is_empty() {
             format!("{}{}", if neg { "-" } else { "" }, int_part)
         } else {
-            format!(
-                "{}{}.{}",
-                if neg { "-" } else { "" },
-                int_part,
-                frac_part
-            )
+            format!("{}{}.{}", if neg { "-" } else { "" }, int_part, frac_part)
         };
         write!(f, "{}", out)
     }

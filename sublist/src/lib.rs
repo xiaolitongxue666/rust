@@ -1,3 +1,7 @@
+//! 子列表关系：判断两列表是 Equal、Sublist、Superlist 还是 Unequal
+//!
+//! 考点：枚举、切片比较、滑动窗口、PartialEq trait bound
+
 #[derive(Debug, PartialEq)]
 pub enum Comparison {
     Equal,
@@ -7,11 +11,10 @@ pub enum Comparison {
 }
 
 pub fn sublist<T: PartialEq>(_first_list: &[T], _second_list: &[T]) -> Comparison {
+    let first_list_len = _first_list.len();
+    let second_list_len = _second_list.len();
 
-     let first_list_len = _first_list.len();
-     let second_list_len = _second_list.len();
-
-    let mut index  = 0;
+    let mut index = 0;
     let result;
     let mut fist_flag = true;
 
@@ -36,7 +39,7 @@ pub fn sublist<T: PartialEq>(_first_list: &[T], _second_list: &[T]) -> Compariso
                             result = Comparison::Unequal;
                             break;
                         } else {
-                            if _second_list == &_first_list[(index) .. (index + second_list_len)] {
+                            if _second_list == &_first_list[(index)..(index + second_list_len)] {
                                 result = Comparison::Superlist;
                                 break;
                             } else {
@@ -55,24 +58,24 @@ pub fn sublist<T: PartialEq>(_first_list: &[T], _second_list: &[T]) -> Compariso
             } else {
                 // first_list_len < second_list_len
                 // if _first_list.iter().all(|x| _second_list.contains(x)) {
-                    loop {
-                        if (fist_flag == false) && (index > (second_list_len - first_list_len)) {
-                            result = Comparison::Unequal;
+                loop {
+                    if (fist_flag == false) && (index > (second_list_len - first_list_len)) {
+                        result = Comparison::Unequal;
+                        break;
+                    } else {
+                        fist_flag = false;
+                        println!("Test: index {:?}", index);
+                        println!("Test: index + first_list_len {:?}", index + first_list_len);
+
+                        if _first_list == &_second_list[(index)..(index + first_list_len)] {
+                            result = Comparison::Sublist;
                             break;
                         } else {
-                            fist_flag = false;
-                            println!("Test: index {:?}", index);
-                            println!("Test: index + first_list_len {:?}", index+first_list_len);
-
-                            if _first_list == &_second_list[(index) .. (index + first_list_len)] {
-                                result = Comparison::Sublist;
-                                break;
-                            } else {
-                                index += 1;
-                            }
+                            index += 1;
                         }
                     }
-                    result
+                }
+                result
                 // } else {
                 //     Comparison::Unequal
                 // }

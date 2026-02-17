@@ -296,6 +296,7 @@ fn drop_large_list() {
 #[cfg(feature = "advanced")]
 #[test]
 #[ignore]
+#[allow(dead_code)]
 fn advanced_linked_list_is_send_sync() {
     trait AssertSend: Send {}
     trait AssertSync: Sync {}

@@ -6,9 +6,8 @@ pub enum Classification {
 }
 
 pub fn classify(num: u64) -> Option<Classification> {
-
     if num == 0 {
-       return None;
+        return None;
     }
 
     use crate::Classification::*;
@@ -16,21 +15,20 @@ pub fn classify(num: u64) -> Option<Classification> {
     vec.push(1);
     for i in 1..num {
         for k in i..num {
-            if i*k == num {
+            if i * k == num {
                 if i != k {
                     vec.push(i);
                     vec.push(k);
-                }
-                else if i == k {
+                } else if i == k {
                     vec.push(i);
                 }
             }
         }
     }
-    println!(" =====>>> Input is {} , {:?} ." , num, vec);
+    println!(" =====>>> Input is {} , {:?} .", num, vec);
 
     let sum: u64 = vec.iter().sum();
-    println!(" =====>>> Sum is {} ." , sum);
+    println!(" =====>>> Sum is {} .", sum);
 
     if sum == num && vec.len() == 1 {
         return Some(Deficient);

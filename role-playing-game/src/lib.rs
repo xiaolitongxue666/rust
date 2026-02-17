@@ -13,23 +13,19 @@ impl Player {
         // unimplemented!("Revive this player")
         if self.health > 0 {
             None
-        } else { 
-            if  self.level >= 10 {
-                Some(
-                    Player {
-                        health: 100,
-                        mana: Some(100),
-                        level: self.level,
-                    }
-                )
+        } else {
+            if self.level >= 10 {
+                Some(Player {
+                    health: 100,
+                    mana: Some(100),
+                    level: self.level,
+                })
             } else {
-                Some(
-                    Player {
-                        health: 100,
-                        mana: None,
-                        level: self.level,
-                    }
-                )
+                Some(Player {
+                    health: 100,
+                    mana: None,
+                    level: self.level,
+                })
             }
         }
     }
@@ -38,12 +34,12 @@ impl Player {
         // unimplemented!("Cast a spell of cost {}", mana_cost)
         match self.mana {
             Some(mana) => {
-                if mana < mana_cost  {
+                if mana < mana_cost {
                     0
                 } else {
                     let temp_u32 = self.mana.clone().unwrap() - mana_cost;
                     self.mana = Some(temp_u32);
-                    mana_cost*2
+                    mana_cost * 2
                 }
             }
             None => {

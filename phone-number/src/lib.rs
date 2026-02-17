@@ -1,5 +1,10 @@
+//! 北美电话号码解析
+//!
+//! 考点：字符串解析、Option、切片、matches!、边界条件（11 位需以 1 开头，区号/交换码不能以 0/1 开头）
+
 const ALLOWED_NON_DIGITS: &[char] = &[' ', '(', ')', '-', '.', '+'];
 
+/// 从用户输入提取 10 位数字，非法字符返回 None；11 位且以 1 开头则去掉国家码
 pub fn number(user_number: &str) -> Option<String> {
     let mut digits = String::new();
     for c in user_number.chars() {
@@ -18,7 +23,7 @@ pub fn number(user_number: &str) -> Option<String> {
     } else if len == 10 {
         digits.as_slice()
     } else {
-        return Non
+        return None;
     };
 
     let area_first = ten_digits[0];

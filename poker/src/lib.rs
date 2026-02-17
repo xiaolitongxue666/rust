@@ -139,7 +139,10 @@ impl PokerHand {
     fn is_ace_low_straight(cards: &[Card]) -> bool {
         cards[0].rank.value() == 2
             && cards[4].rank == Rank::Ace
-            && cards.windows(2).take(3).all(|w| w[1].rank.value() - w[0].rank.value() == 1)
+            && cards
+                .windows(2)
+                .take(3)
+                .all(|w| w[1].rank.value() - w[0].rank.value() == 1)
     }
 
     fn analyze(cards: &[Card]) -> Result<Self, &'static str> {
@@ -149,7 +152,9 @@ impl PokerHand {
         let suits: Counter<_> = cards.iter().map(|c| c.suit).collect();
         let is_flush = suits.most_common().first().map(|(_, n)| *n) == Some(5);
 
-        let is_straight = cards.windows(2).all(|w| w[1].rank.value() - w[0].rank.value() == 1)
+        let is_straight = cards
+            .windows(2)
+            .all(|w| w[1].rank.value() - w[0].rank.value() == 1)
             || Self::is_ace_low_straight(cards);
 
         if is_flush && is_straight {
@@ -194,7 +199,10 @@ struct Hand<'a> {
 
 impl Hand<'_> {
     fn cmp_high_card(&self, other: &Hand, idx: usize) -> Ordering {
-        let c = self.cards[idx].rank.value().cmp(&other.cards[idx].rank.value());
+        let c = self.cards[idx]
+            .rank
+            .value()
+            .cmp(&other.cards[idx].rank.value());
         if c == Ordering::Equal && idx > 0 {
             self.cmp_high_card(other, idx - 1)
         } else {

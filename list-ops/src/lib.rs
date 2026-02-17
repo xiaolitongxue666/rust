@@ -1,3 +1,8 @@
+//! 列表操作：用迭代器实现 append、concat、filter、map、fold、reverse
+//!
+//! 考点：Iterator、impl Iterator、std::iter::from_fn、闭包 move、Option::or_else、
+//! DoubleEndedIterator::rev、fold 左/右结合
+
 /// Yields each item of a and then each item of b
 pub fn append<I, J>(mut a: I, mut b: J) -> impl Iterator<Item = I::Item>
 where
@@ -19,7 +24,7 @@ where
     std::iter::from_fn(move || a.next().or_else(|| b.next()))
 }
 
-/// Combines all items in all nested iterators inside into one flattened iterator
+/// 展平嵌套迭代器。考点：loop + Option 状态机、ref mut 借用
 pub fn concat<I>(nested_iter: I) -> impl Iterator<Item = <I::Item as Iterator>::Item>
 where
     I: Iterator,
@@ -28,22 +33,24 @@ where
     let mut outer = nested_iter;
     let mut cur: Option<I::Item> = None;
 
-    std::iter::from_fn(move || loop {
-        if let Some(ref mut inner) = cur {
-            if let Some(val) = inner.next() {
-                return Some(val);
+    std::iter::from_fn(move || {
+        loop {
+            if let Some(ref mut inner) = cur {
+                if let Some(val) = inner.next() {
+                    return Some(val);
+                }
+                cur = None;
             }
-            cur = None;
-        }
-        if let Some(inner) = outer.next() {
-            cur = Some(inner);
-        } else {
-            return None;
+            if let Some(inner) = outer.next() {
+                cur = Some(inner);
+            } else {
+                return None;
+            }
         }
     })
 }
 
-/// Returns an iterator of all items in iter for which `predicate(item)` is true
+/// 过滤。考点：Iterator::find 替代手写循环
 pub fn filter<I, F>(mut _iter: I, _predicate: F) -> impl Iterator<Item = I::Item>
 where
     I: Iterator,
@@ -54,11 +61,12 @@ where
     std::iter::from_fn(move || _iter.find(|item| _predicate(item)))
 }
 
+/// 长度。考点：Iterator::count
 pub fn length<I: Iterator>(mut _iter: I) -> usize {
     _iter.count()
 }
 
-/// Returns an iterator of the results of applying `function(item)` on all iter items
+/// 映射。考点：Option::map 配合闭包引用 &_function
 pub fn map<I, F, U>(mut mut_iter: I, _function: F) -> impl Iterator<Item = U>
 where
     I: Iterator,
@@ -69,6 +77,7 @@ where
     std::iter::from_fn(move || mut_iter.next().map(&_function))
 }
 
+/// 左折叠。考点：Iterator::fold
 pub fn foldl<I, F, U>(iter: I, initial: U, function: F) -> U
 where
     I: Iterator,
@@ -77,6 +86,7 @@ where
     iter.fold(initial, function)
 }
 
+/// 右折叠。考点：DoubleEndedIterator::rev + fold
 pub fn foldr<I, F, U>(iter: I, initial: U, function: F) -> U
 where
     I: DoubleEndedIterator,
@@ -85,7 +95,7 @@ where
     iter.rev().fold(initial, function)
 }
 
-/// Returns an iterator with all the original items, but in reverse order
+/// 反转。考点：DoubleEndedIterator::rev
 pub fn reverse<I: DoubleEndedIterator>(iter: I) -> impl Iterator<Item = I::Item> {
     iter.rev()
 }

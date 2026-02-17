@@ -25,11 +25,11 @@ impl TeamStats {
 }
 
 /// 生成联赛积分榜
-/// 
+///
 /// # 输入格式
 /// 每行格式：`Team1;Team2;result`
 /// - result 可以是 "win"（Team1 赢）、"loss"（Team1 输）、"draw"（平局）
-/// 
+///
 /// # 输出格式
 /// 表格包含：Team | MP | W | D | L | P
 /// - 按积分降序排序，积分相同时按团队名字母序排序

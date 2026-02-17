@@ -24,7 +24,7 @@ fn queen_must_have_positive_column() {
     assert!(chess_position.is_none());
 }
 
-#[test]     
+#[test]
 fn queen_must_have_column_on_board() {
     let chess_position = ChessPosition::new(4, 8);
     assert!(chess_position.is_none());

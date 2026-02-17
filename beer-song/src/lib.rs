@@ -25,7 +25,7 @@ pub fn verse(n: u32) -> String {
 }
 
 pub fn sing(start: u32, end: u32) -> String {
-    let mut return_string:String = "".to_string();
+    let mut return_string: String = "".to_string();
     let mut i = start;
     while i >= end {
         return_string.push_str(&verse(i));

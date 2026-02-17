@@ -33,36 +33,30 @@ fn test_sixty_minutes_is_next_hour() {
     assert_eq!(Clock::new(1, 60).to_string(), "02:00");
 }
 
-
 #[test]
 fn test_minutes_roll_over() {
     assert_eq!(Clock::new(0, 160).to_string(), "02:40");
 }
-
 
 #[test]
 fn test_minutes_roll_over_continuously() {
     assert_eq!(Clock::new(0, 1723).to_string(), "04:43");
 }
 
-
 #[test]
 fn test_hours_and_minutes_roll_over() {
     assert_eq!(Clock::new(25, 160).to_string(), "03:40");
 }
-
 
 #[test]
 fn test_hours_and_minutes_roll_over_continuously() {
     assert_eq!(Clock::new(201, 3001).to_string(), "11:01");
 }
 
-
 #[test]
 fn test_hours_and_minutes_roll_over_to_exactly_midnight() {
     assert_eq!(Clock::new(72, 8640).to_string(), "00:00");
 }
-
 
 #[test]
 fn test_negative_hour() {
@@ -127,7 +121,6 @@ fn test_add_minutes() {
     let clock = Clock::new(10, 0).add_minutes(3);
     assert_eq!(clock.to_string(), "10:03");
 }
-
 
 #[test]
 fn test_add_no_minutes() {
@@ -298,4 +291,3 @@ fn test_compare_clocks_with_negative_hours_and_minutes_that_wrap() {
 fn test_compare_full_clock_and_zeroed_clock() {
     assert_eq!(Clock::new(24, 0), Clock::new(0, 0))
 }
-

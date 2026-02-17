@@ -19,9 +19,9 @@ pub struct BucketStats {
 use std::collections::{HashSet, VecDeque};
 
 /// Solve the bucket problem
-/// 
+///
 /// 使用 BFS（广度优先搜索）算法找到最少步数达到目标水量
-/// 
+///
 /// # 算法思路
 /// 1. 从初始状态开始（根据 start_bucket 装满对应的桶）
 /// 2. 使用 BFS 搜索所有可能的状态
@@ -37,13 +37,13 @@ pub fn solve(
     if goal > capacity_1 && goal > capacity_2 {
         return None;
     }
-    
+
     // 初始化状态：根据 start_bucket 装满对应的桶
     let initial_state = match start_bucket {
         Bucket::One => (capacity_1, 0),
         Bucket::Two => (0, capacity_2),
     };
-    
+
     // 如果初始状态就已经达到目标
     if initial_state.0 == goal {
         return Some(BucketStats {
@@ -59,22 +59,22 @@ pub fn solve(
             other_bucket: initial_state.0,
         });
     }
-    
+
     // BFS 队列：存储 (bucket1_amount, bucket2_amount, moves)
     let mut queue = VecDeque::new();
     queue.push_back((initial_state.0, initial_state.1, 1));
-    
+
     // 记录已访问的状态，避免重复搜索
     let mut visited = HashSet::new();
     visited.insert(initial_state);
-    
+
     // 记录找到的所有解：目标在起始桶中的解，和目标在非起始桶中的解
     let mut solution_in_start_bucket: Option<BucketStats> = None;
     let mut solution_in_other_bucket: Option<BucketStats> = None;
-    
+
     // 确定起始桶是哪个
     let start_is_one = matches!(start_bucket, Bucket::One);
-    
+
     while let Some((b1, b2, moves)) = queue.pop_front() {
         // 生成所有可能的下一个状态
         let next_states = vec![
@@ -97,7 +97,7 @@ pub fn solve(
                 (b1 + pour, b2 - pour)
             },
         ];
-        
+
         // 处理每个新状态
         for (new_b1, new_b2) in next_states {
             // 规则：不能到达起始桶为空且另一个桶满的状态
@@ -108,7 +108,7 @@ pub fn solve(
             if is_invalid_state {
                 continue; // 跳过这个无效状态
             }
-            
+
             // 检查是否达到目标
             if new_b1 == goal {
                 // 目标在桶1中
@@ -132,7 +132,7 @@ pub fn solve(
                     }
                 }
             }
-            
+
             if new_b2 == goal {
                 // 目标在桶2中
                 if !start_is_one {
@@ -155,7 +155,7 @@ pub fn solve(
                     }
                 }
             }
-            
+
             // 如果状态未访问过，加入队列
             let new_state = (new_b1, new_b2);
             if !visited.contains(&new_state) {
@@ -164,7 +164,7 @@ pub fn solve(
             }
         }
     }
-    
+
     // 优先返回目标在起始桶中的解，如果找不到，返回目标在另一个桶中的解
     solution_in_start_bucket.or(solution_in_other_bucket)
 }

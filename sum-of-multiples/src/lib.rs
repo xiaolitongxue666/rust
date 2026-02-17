@@ -1,3 +1,7 @@
+//! 倍数之和：求 [1, limit) 内所有 factors 倍数的和（去重）
+//!
+//! 考点：HashSet 去重、factor 为 0 时跳过
+
 use std::collections::HashSet;
 
 pub fn sum_of_multiples(limit: u32, factors: &[u32]) -> u32 {

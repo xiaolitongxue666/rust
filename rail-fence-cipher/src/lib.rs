@@ -1,3 +1,8 @@
+//! 栅栏密码：将字符按之字形排列到多行后按行读取
+//!
+//! 考点：周期函数（rail_index 计算位置所在行）、Vec<Vec<char>> 模拟多轨、
+//! 编码：按位置分轨；解码：先算每轨索引，再按轨填充
+
 pub struct RailFence {
     rails: u32,
 }
@@ -7,6 +12,7 @@ impl RailFence {
         RailFence { rails }
     }
 
+    /// 位置 pos 所在轨索引。周期 2*(rails-1)，前半上升后半下降
     fn rail_index(&self, pos: usize) -> u32 {
         if self.rails <= 1 {
             return 0;

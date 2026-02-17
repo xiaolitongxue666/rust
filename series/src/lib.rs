@@ -1,3 +1,7 @@
+//! 连续子串：从数字字符串中提取所有长度为 len 的连续子串
+//!
+//! 考点：字符串切片、范围遍历
+
 pub fn series(digits: &str, len: usize) -> Vec<String> {
     if digits.len() < len {
         return vec![];

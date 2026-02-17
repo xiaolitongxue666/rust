@@ -51,10 +51,7 @@ impl RobotFactory {
     pub fn new_robot<R: Rng>(&mut self, rng: &mut R) -> Robot {
         let used_names = Rc::clone(&self.used_names);
         let name = Self::get_unique_name(&used_names, rng);
-        Robot {
-            name,
-            used_names,
-        }
+        Robot { name, used_names }
     }
 }
 

@@ -32,7 +32,7 @@ fn you_can_validate_from_a_u16() {
     assert!(!invalid.is_valid());
 }
 
-#[test] 
+#[test]
 fn you_can_validate_from_a_u32() {
     let valid = Luhn::from(46_454_286u32);
     let invalid = Luhn::from(46_454_287u32);

@@ -23,7 +23,7 @@ pub fn fibonacci() -> Vec<u8> {
         if index < 2 {
             fib_vec[index] = 1;
         } else {
-            fib_vec[index] = fib_vec[index - 1] + fib_vec[index -2];
+            fib_vec[index] = fib_vec[index - 1] + fib_vec[index - 2];
         }
     }
 

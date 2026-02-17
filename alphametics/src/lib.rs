@@ -29,7 +29,7 @@ fn extract_letters(equation: &str) -> Vec<char> {
 /*
 初始值: acc = 0
 第1次迭代: acc = 0 * 10 + 9 = 9
-第2次迭代: acc = 9 * 10 + 5 = 95  
+第2次迭代: acc = 9 * 10 + 5 = 95
 第3次迭代: acc = 95 * 10 + 6 = 956
 第4次迭代: acc = 956 * 10 + 7 = 9567
 */
@@ -61,19 +61,21 @@ fn is_valid_assignment(
 
     // 检查多位数的首位不能为0
     for word in left_words {
-        if word.len() > 1
-            && let Some(&first_digit) = assignment.get(&word.chars().next().unwrap())
-            && first_digit == 0
-        {
-            return false;
+        if word.len() > 1 {
+            if let Some(&first_digit) = assignment.get(&word.chars().next().unwrap()) {
+                if first_digit == 0 {
+                    return false;
+                }
+            }
         }
     }
 
-    if right_word.len() > 1
-        && let Some(&first_digit) = assignment.get(&right_word.chars().next().unwrap())
-        && first_digit == 0
-    {
-        return false;
+    if right_word.len() > 1 {
+        if let Some(&first_digit) = assignment.get(&right_word.chars().next().unwrap()) {
+            if first_digit == 0 {
+                return false;
+            }
+        }
     }
 
     true
@@ -104,12 +106,12 @@ fn is_valid_solution(
 
 /// 回溯算法的主函数
 /// 尝试为每个字母分配数字，直到找到有效解或确定无解
-/// 
+///
 /// 回溯算法核心思想：
 /// 1. 系统性地尝试所有可能的数字分配组合
 /// 2. 当发现当前路径不可能产生解时，立即回退
 /// 3. 通过约束传播和剪枝大幅减少搜索空间
-/// 
+///
 /// 算法流程：
 /// 1. 基础情况：所有字母都已分配数字 → 验证是否为有效解
 /// 2. 递归情况：为当前字母尝试所有可能的数字(0-9)
@@ -117,13 +119,12 @@ fn is_valid_solution(
 /// 4. 递归探索：尝试下一个字母的所有可能分配
 /// 5. 回溯机制：当前路径无解时，撤销分配并尝试下一个数字
 fn backtrack(
-    letters: &[char],                    // 所有需要分配数字的字母列表
-    assignment: &mut HashMap<char, u8>,   // 当前已分配的字母→数字映射
-    left_words: &[&str],                 // 等式左边的所有单词
-    right_word: &str,                    // 等式右边的结果单词
-    letter_index: usize,                 // 当前正在处理的字母索引
+    letters: &[char],                   // 所有需要分配数字的字母列表
+    assignment: &mut HashMap<char, u8>, // 当前已分配的字母→数字映射
+    left_words: &[&str],                // 等式左边的所有单词
+    right_word: &str,                   // 等式右边的结果单词
+    letter_index: usize,                // 当前正在处理的字母索引
 ) -> Option<HashMap<char, u8>> {
-    
     // ========== 基础情况：递归终止条件 ==========
     // 如果所有字母都已分配数字，检查当前分配是否构成有效解
     if letter_index == letters.len() {
@@ -141,7 +142,7 @@ fn backtrack(
 
     // ========== 递归情况：尝试当前字母的所有可能数字 ==========
     let current_letter = letters[letter_index];
-    
+
     // 为当前字母尝试所有可能的数字(0-9)
     for digit in 0..=9 {
         // ========== 约束检查：数字唯一性 ==========
@@ -151,23 +152,23 @@ fn backtrack(
             // ========== 做出选择：分配数字 ==========
             // 将当前字母与数字建立映射关系
             assignment.insert(current_letter, digit);
-            
+
             // ========== 递归探索：尝试下一个字母 ==========
             // 递归调用，处理下一个字母的所有可能分配
             // 这里体现了回溯的"深度优先搜索"特性
             if let Some(result) = backtrack(
-                letters,                    // 字母列表不变
-                assignment,                 // 传递当前分配状态
-                left_words,                 // 等式信息不变
-                right_word,                 // 等式信息不变
-                letter_index + 1,          // 处理下一个字母
+                letters,          // 字母列表不变
+                assignment,       // 传递当前分配状态
+                left_words,       // 等式信息不变
+                right_word,       // 等式信息不变
+                letter_index + 1, // 处理下一个字母
             ) {
                 // ========== 找到解：立即返回 ==========
                 // 如果递归调用找到了有效解，立即返回结果
                 // 这避免了继续搜索其他可能解，提高效率
                 return Some(result);
             }
-            
+
             // ========== 回溯机制：撤销选择 ==========
             // 如果当前路径没有找到解，必须撤销刚才的分配
             // 这是回溯算法的核心：当发现死路时，回退到上一个状态
@@ -176,7 +177,7 @@ fn backtrack(
         // 如果当前数字已被使用，直接尝试下一个数字
         // 这实现了约束传播：避免无效的搜索分支
     }
-    
+
     // ========== 无解情况：所有数字都尝试失败 ==========
     // 如果当前字母的所有可能数字(0-9)都无法产生有效解
     // 返回None，让上层递归尝试其他路径

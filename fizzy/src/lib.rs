@@ -75,7 +75,9 @@ impl<T: Copy + ToString> Default for Fizzy<T> {
 }
 
 /// 支持 FizzBuzz 的类型：需 Rem、PartialEq、零值、3 和 5
-pub(crate) trait FizzBuzzNum: Copy + ToString + Rem<Output = Self> + PartialEq + 'static {
+pub trait FizzBuzzNum:
+    Copy + ToString + Rem<Output = Self> + PartialEq + 'static
+{
     fn zero() -> Self;
     fn three() -> Self;
     fn five() -> Self;

@@ -48,7 +48,6 @@ planet_impl!(Saturn, 29.447498);
 planet_impl!(Uranus, 84.016846);
 planet_impl!(Neptune, 164.79132);
 
-
 // impl Planet for Mercury {
 //     fn years_during(d: &Duration) -> f64 {
 //         // Return the number of years during the given duration

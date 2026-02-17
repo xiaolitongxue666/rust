@@ -7,7 +7,7 @@
 &nbsp;&nbsp;[![Exercism_III](https://img.shields.io/badge/PAUSED-C73D4E?labelColor=3D454D&label=Contributions)](https://exercism.org/blog/freeing-our-maintainers)
 &nbsp;&nbsp;[![CI](https://github.com/xiaolitongxue666/rust/workflows/CI/badge.svg?branch=main)](https://github.com/xiaolitongxue666/rust/actions?query=workflow%3ACI+branch%3Amain)
 
-> **个人练习仓库**：Fork 自 [exercism/rust](https://github.com/exercism/rust)，用于 Rust 学习与 Exercism 题目练习。根目录下的各题目文件夹为 `exercism download` 下载的实现目录。
+> **个人练习仓库**：Fork 自 [exercism/rust](https://github.com/exercism/rust)，用于 Rust 学习与 Exercism 题目练习。
 
 <br>
 
@@ -62,34 +62,111 @@ _Thoughtful suggestions will likely result faster & more enthusiastic responses 
 <br>
 <br>
 
-## 24 题练习顺序（学习参考）
+## 练习顺序（学习参考）
+
+按 [Exercism Rust Track](https://exercism.org/tracks/rust/exercises) 官方顺序，共 99 道 practice 题目（已排除 deprecated）：
 
 | 序号 | 题目 | 难度 | 主要考点 |
 | --- | --- | --- | --- |
-| 1 | rotational-cipher | Medium | char、ASCII、迭代器 |
-| 2 | simple-cipher | Medium | Vigenère 密码、char |
-| 3 | word-count | Medium | HashMap、Entry API、字符串解析 |
-| 4 | secret-handshake | Medium | 位运算、二进制 |
-| 5 | knapsack | Medium | 动态规划 |
-| 6 | yacht | Medium | 骰子计分、模式匹配 |
-| 7 | matrix | Medium | 迭代器、切片 |
-| 8 | fizzy | Hard | 泛型、impl Trait、迭代器 |
-| 9 | pythagorean-triplet | Medium | 数学、三元组 |
-| 10 | parallel-letter-frequency | Hard | 多线程、并发 |
-| 11 | macros | Hard | 声明宏 macro_rules! |
-| 12 | pov | Hard | 树结构、图算法 |
-| 13 | poker | Hard | 解析、枚举、比较 |
-| 14 | forth | Hard | 栈、词法解析 |
-| 15 | ocr-numbers | Hard | 模式匹配、3x4 网格 |
-| 16 | react | Hard | 响应式、闭包、图 |
-| 17 | circular-buffer | Hard | 环形缓冲区、泛型 |
-| 18 | rectangles | Hard | ASCII 图形、算法 |
-| 19 | xorcism | Hard | XOR、生命周期、迭代器 |
-| 20 | book-store | Medium | 动态规划、组合优化 |
-| 21 | decimal | Medium | 任意精度、traits |
-| 22 | grep | Medium | 文件 I/O、anyhow |
-| 23 | dominoes | Hard | 图论、回溯 |
-| 24 | doubly-linked-list | Hard | unsafe、裸指针 |
+| 1 | hello-world | Easy | TDD |
+| 2 | reverse-string | Easy | 迭代器、字符串 |
+| 3 | gigasecond | Easy | external-crates |
+| 4 | clock | Medium | structs、derive、traits |
+| 5 | anagram | Medium | 迭代器、lifetimes |
+| 6 | space-age | Medium+ | From trait、traits |
+| 7 | sublist | Medium+ | 泛型、enums |
+| 8 | flower-field | Medium+ | 棋盘状态 |
+| 9 | luhn | Medium+ | 高阶函数、迭代器 |
+| 10 | armstrong-numbers | Easy | 数学 |
+| 11 | bottle-song | Easy | - |
+| 12 | difference-of-squares | Easy | map、fold、数学 |
+| 13 | grains | Easy | panic |
+| 14 | leap | Easy | 条件、取模 |
+| 15 | nth-prime | Easy | 数学、素数 |
+| 16 | prime-factors | Easy | 数学 |
+| 17 | proverb | Easy | format |
+| 18 | raindrops | Easy | 条件、字符串 |
+| 19 | sum-of-multiples | Easy | 算法、借用 |
+| 20 | bob | Easy | char、字符串 |
+| 21 | high-scores | Easy | 迭代器、lifetimes |
+| 22 | matching-brackets | Easy | 栈 |
+| 23 | collatz-conjecture | Easy | Option、数学 |
+| 24 | series | Easy | 字符串、切片 |
+| 25 | kindergarten-garden | Easy | - |
+| 26 | eliuds-eggs | Easy | 位运算 |
+| 27 | acronym | Medium | filter、map、驼峰 |
+| 28 | all-your-base | Medium | 进制转换、Result |
+| 29 | allergies | Medium | 位运算、filter |
+| 30 | alphametics | Medium | 组合、解析 |
+| 31 | binary-search | Medium | Option、切片 |
+| 32 | bowling | Medium | structs、Result |
+| 33 | dot-dsl | Medium | builder、derive |
+| 34 | etl | Easy | BTreeMap |
+| 35 | grade-school | Medium | Entry API、HashMap |
+| 36 | hamming | Medium | Option、zip |
+| 37 | isbn-verifier | Medium | 字符串解析 |
+| 38 | isogram | Medium | char、迭代器 |
+| 39 | nucleotide-count | Medium | Entry API、Result |
+| 40 | paasio | Medium | I/O、traits |
+| 41 | palindrome-products | Medium | 数学、structs |
+| 42 | pangram | Medium | HashSet、filter |
+| 43 | pascals-triangle | Medium | 数学、Vec |
+| 44 | perfect-numbers | Medium | 数学 |
+| 45 | pig-latin | Medium | 字符串、正则 |
+| 46 | queen-attack | Medium | structs、Result |
+| 47 | rna-transcription | Medium | match、字符串 |
+| 48 | run-length-encoding | Medium | 游程编码 |
+| 49 | saddle-points | Medium | 迭代器、矩阵 |
+| 50 | say | Medium | 数字转英文 |
+| 51 | scrabble-score | Medium | HashMap、match |
+| 52 | sieve | Medium | 埃氏筛 |
+| 53 | simple-linked-list | Medium | Box、链表 |
+| 54 | spiral-matrix | Medium | 矩阵、螺旋 |
+| 55 | tournament | Medium | HashMap、排序 |
+| 56 | triangle | Medium | structs |
+| 57 | two-bucket | Medium | BFS/DFS |
+| 58 | variable-length-quantity | Medium | 位运算、VLQ |
+| 59 | robot-simulator | Medium+ | enums |
+| 60 | robot-name | Medium | 随机、lifetimes |
+| 61 | protein-translation | Medium+ | HashMap、Result |
+| 62 | wordy | Medium | 解析、表达式 |
+| 63 | custom-set | Medium | 泛型、集合 |
+| 64 | accumulate | Medium | 高阶函数、FnMut |
+| 65 | affine-cipher | Medium | 仿射密码 |
+| 66 | atbash-cipher | Medium | 替换密码 |
+| 67 | crypto-square | Medium | 密码方阵 |
+| 68 | diamond | Medium | 字符串、格式 |
+| 69 | largest-series-product | Medium | 滑动窗口、数学 |
+| 70 | luhn-from | Medium | From trait |
+| 71 | luhn-trait | Medium | trait、blanket impl |
+| 72 | list-ops | Medium | 迭代器、泛型 |
+| 73 | phone-number | Medium | 字符串解析、Option |
+| 74 | rail-fence-cipher | Medium | 栅栏密码 |
+| 75 | roman-numerals | Medium | From、Display |
+| 76 | rotational-cipher | Medium | char、ASCII |
+| 77 | simple-cipher | Medium | Vigenère 密码 |
+| 78 | word-count | Medium | HashMap、Entry API |
+| 79 | secret-handshake | Medium | 位运算 |
+| 80 | knapsack | Medium | 动态规划 |
+| 81 | yacht | Medium | 骰子、模式匹配 |
+| 82 | matrix | Medium | 迭代器、切片 |
+| 83 | fizzy | Medium+ | 泛型、impl Trait |
+| 84 | pythagorean-triplet | Medium+ | 数学、三元组 |
+| 85 | parallel-letter-frequency | Hard | 多线程 |
+| 86 | macros | Hard | macro_rules! |
+| 87 | pov | Hard | 树、图算法 |
+| 88 | poker | Hard | 解析、枚举、比较 |
+| 89 | forth | Hard | 栈、词法解析 |
+| 90 | ocr-numbers | Hard | 3x4 网格、模式匹配 |
+| 91 | react | Hard | 响应式、闭包 |
+| 92 | circular-buffer | Hard | 环形缓冲区 |
+| 93 | rectangles | Hard | ASCII 图形 |
+| 94 | xorcism | Hard | XOR、生命周期 |
+| 95 | book-store | Medium+ | 动态规划 |
+| 96 | decimal | Medium+ | 任意精度、bigint |
+| 97 | grep | Medium+ | 文件 I/O、anyhow |
+| 98 | dominoes | Hard | 图论、回溯 |
+| 99 | doubly-linked-list | Hard | unsafe、裸指针 |
 
 **测试命令**：`cargo test -- --include-ignored`  
 **特殊**：xorcism 需 `--features io`；doubly-linked-list 需 `--features advanced`
@@ -98,7 +175,7 @@ _Thoughtful suggestions will likely result faster & more enthusiastic responses 
 
 | 路径 | 说明 |
 | --- | --- |
-| `rotational-cipher/`、`simple-cipher/` 等 | 个人实现的题目（`exercism download` 下载） |
+| `hello-world/`、`reverse-string/` 等（99 道） | 个人实现的题目（`exercism download` 下载） |
 | `exercises/practice/<slug>/` | 题目规范定义与参考实现 |
 | `Install_Exercism_Tool.md` | Exercism CLI 安装与使用指南 |
 

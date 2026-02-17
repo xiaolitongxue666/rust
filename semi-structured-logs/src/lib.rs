@@ -13,10 +13,9 @@ pub enum LogLevel {
 pub fn log(level: LogLevel, message: &str) -> String {
     // unimplemented!()
     match level {
-        LogLevel::Info => format!("[INFO]: {}" , message),
+        LogLevel::Info => format!("[INFO]: {}", message),
         LogLevel::Warning => format!("[WARNING]: {}", message),
         LogLevel::Error => format!("[ERROR]: {}", message),
-
     }
 }
 pub fn info(message: &str) -> String {

@@ -41,7 +41,11 @@ pub fn annotate(garden: &[&str]) -> Vec<String> {
                             }
                         }
                     }
-                    new_row.push(if count == 0 { ' ' } else { (count as u8 + b'0') as char });
+                    new_row.push(if count == 0 {
+                        ' '
+                    } else {
+                        (count as u8 + b'0') as char
+                    });
                 }
             }
             new_row

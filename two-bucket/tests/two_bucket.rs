@@ -107,7 +107,7 @@ fn with_the_same_buckets_but_a_different_goal_then_it_is_possible() {
     assert_eq!(output, expected);
 }
 
-#[test] 
+#[test]
 fn goal_larger_than_both_buckets_is_impossible() {
     let output = solve(5, 7, 8, &Bucket::One);
     let expected = None;

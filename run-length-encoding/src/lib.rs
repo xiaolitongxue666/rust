@@ -1,10 +1,12 @@
+//! 游程编码：连续相同字符压缩为 "数量+字符"（数量为 1 时省略）
+//!
+//! 考点：chars 迭代、状态机（前字符+计数）、decode 需解析数字前缀
+
 pub fn encode(source: &str) -> String {
+    let mut return_string: String = String::new();
 
-    let mut return_string:String = String::new();
-
-    if source.len() == 0 {
-        println!("Empty string !");
-        return_string
+    if source.is_empty() {
+        return return_string;
     } else {
         let mut iter = source.chars();
         let mut pre_char: char = '0';
@@ -25,44 +27,35 @@ pub fn encode(source: &str) -> String {
                     count += 1;
                 }
             } else {
-                    if count != 0 {
-                        if count > 1 {
-                            return_string.push_str(&count.to_string());
-                        }
-                        return_string.push(pre_char);
+                if count != 0 {
+                    if count > 1 {
+                        return_string.push_str(&count.to_string());
                     }
-                    break;
+                    return_string.push(pre_char);
+                }
+                break;
             }
         }
-
 
         return_string
     }
-
 }
 
 pub fn decode(source: &str) -> String {
-    let mut return_string: String = String::new();
-    println!("Decode source is {} ." , source);
+    let mut result = String::new();
+    let mut chars = source.chars().peekable();
+    let mut count_str = String::new();
 
-    loop {
-        let mut iter = source.chars();
-        let mut temp_string = String::new();
-        let count:u64;
-        
-        if let Some(iterm) = iter.next() {
-            if iterm.is_ascii_alphanumeric() {
-                temp_string.push(iterm);
-            } else {
-                count = temp_string.parse().unwrap_or(0);
-                for _ in 0..count {
-                    return_string.push(iterm);
-                }
-            }
+    while let Some(c) = chars.next() {
+        if c.is_ascii_digit() {
+            count_str.push(c);
         } else {
-                break;
+            let n: usize = count_str.parse().unwrap_or(1);
+            for _ in 0..n {
+                result.push(c);
+            }
+            count_str.clear();
         }
     }
-
-    return_string
+    result
 }

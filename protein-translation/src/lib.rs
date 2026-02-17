@@ -5,14 +5,14 @@ pub fn translate(rna: &str) -> Option<Vec<&str>> {
 
     let mut proteins = Vec::new();
     let bytes = rna.as_bytes();
-    
+
     for chunk in bytes.chunks(3) {
         if chunk.len() < 3 {
             return None;
         }
-        
+
         let codon = std::str::from_utf8(chunk).ok()?;
-        
+
         match codon {
             "UAA" | "UAG" | "UGA" => break,
             "AUG" => proteins.push("Methionine"),
@@ -25,6 +25,6 @@ pub fn translate(rna: &str) -> Option<Vec<&str>> {
             _ => return None,
         }
     }
-    
+
     Some(proteins)
 }

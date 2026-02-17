@@ -1,5 +1,5 @@
 /// 将单词转换为 Pig Latin
-/// 
+///
 /// 规则：
 /// - 以元音（a, e, i, o, u）开头的单词：在末尾加 "ay"
 /// - 以 "xr" 或 "yr" 开头的单词：视为元音，在末尾加 "ay"
@@ -9,7 +9,7 @@
 pub fn translate(input: &str) -> String {
     input
         .split_whitespace()
-        .map(translate_word)    // 对每个 &str 元素调用 translate_word
+        .map(translate_word) // 对每个 &str 元素调用 translate_word
         .collect::<Vec<_>>()
         .join(" ")
 }
@@ -28,7 +28,7 @@ fn translate_word(word: &str) -> String {
     // 找到第一个元音的位置
     let chars: Vec<char> = word.chars().collect();
     let vowel_index = find_first_vowel(&chars);
-    
+
     if vowel_index > 0 {
         // 将辅音部分移到末尾
         let consonant_cluster: String = chars[..vowel_index].iter().collect();
@@ -48,7 +48,7 @@ fn starts_with_vowel_sound(word: &str) -> bool {
 
     let word_lower = word.to_ascii_lowercase();
     let first_char = word_lower.chars().next().unwrap();
-    
+
     // 检查是否是元音
     matches!(first_char, 'a' | 'e' | 'i' | 'o' | 'u') ||
     // 检查是否是 xr、yr 或 yt 开头
@@ -60,10 +60,10 @@ fn starts_with_vowel_sound(word: &str) -> bool {
 /// 找到第一个元音的位置
 fn find_first_vowel(chars: &[char]) -> usize {
     let mut i = 0;
-    
+
     while i < chars.len() {
         let ch = chars[i].to_ascii_lowercase();
-        
+
         // 检查是否是元音
         if matches!(ch, 'a' | 'e' | 'i' | 'o' | 'u') {
             return i;
